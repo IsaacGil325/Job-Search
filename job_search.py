@@ -92,6 +92,7 @@ class SavedJob(db.Model):
 
 @app.route("/saved_jobs", methods=('GET', 'POST'))
 def save_job():
+    #new comment for test
     # print(request_data.get('job_title'))
     #get value from checkbox?
     if request.method == 'POST':
