@@ -70,14 +70,9 @@ def valid_login(username, password):
     user = query_db('select * from User where username = ?', [username], one=True)
     if user is None:
         return False
-<<<<<<< HEAD
-    else:
-        return True
-=======
     hashed_pw = user[2]
     return bcrypt.check_password_hash(hashed_pw, password)
 
->>>>>>> master
 @app.route("/logout")
 def logout_user():
     session.clear()
