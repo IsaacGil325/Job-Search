@@ -36,7 +36,6 @@ API_KEYS = ('e21193f2b2ee7a0a7042c7a414822b20b10c84609c42a408732401d8b62ddc06',
 key_index = random.randint(0, 2)
 
 
-
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -74,9 +73,14 @@ def valid_login(username, password):
         return False
     else:
         return True
-
+@app.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect(url_for('homepage'))
 
 def log_the_user_in(username):
+    if session.get('username', None):
+        return True
     session['username'] = username
     return redirect(url_for('job_search'))
 
@@ -196,6 +200,17 @@ def login():
             error = 'Invalid username/password'
 
     return render_template('login.html', error=error)
+
+@app.route('/delete_job', methods=('GET', 'POST'))
+def delete_job():
+    if request.method == 'POST':
+        job_title = request.json.get('job_title')
+        engine = db.create_engine('sqlite:///jobify.db', {})
+        # query = engine.execute(f"DELETE FROM saved_job WHERE job_description = '{job_description}';").fetchall()
+        query = engine.execute(f"DELETE FROM saved_job WHERE job_title = '{job_title}';")
+        db.session.commit()
+        return render_template('delete_job.html')
+
 
 
 if __name__ == '__main__':

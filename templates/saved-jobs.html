@@ -1,4 +1,4 @@
-{% extends "logged-in-layout.html" %}
+{% extends "layout.html" %}
 {% block content %}
 
 <table class="table table-bordered">
@@ -9,6 +9,7 @@
       <th scope="col">Company Name</th>
       <th scope="col">Location</th>
       <th scope="col">description</th>
+      <th scope="col">Delete Job</th>
     </tr>
   </thead>
   <tbody>
@@ -19,6 +20,7 @@
       <td id="company_name_{{job['job_id']}}">{{job[3]}}</td>
       <td id="job_location_{{job['job_id']}}">{{job[4]}}</td>
       <td id="job_description_{{job['job_id']}}">{{job[5]}}</td>
+      <td><input type="checkbox" id="job_save_{{job['job_id']}}" value="job" onclick = "getDelete('{{job['job_id']}}');" ></td>
 
     </tr>
     {%else%}
