@@ -81,8 +81,8 @@
                                 <div>
                                 <div class="header-btn d-none f-right d-lg-block">
                                     <ul id="navigation">
-                                    <li><a href="{{ url_for('homepage') }}"> </a>Currently logged in.</a></li>
-                                    <!-- <a href="{{ url_for('login') }}" class="btn head-btn2">Login</a> -->
+                                    <li><a href="{{ url_for('homepage') }}" class="btn head-btn1"> {{ session['username'] }}</a></li>
+                                    <li><a href="{{ url_for('homepage') }}" class="btn head-btn2">Logout</a>
                                     </ul>
                                 </div>
                             </div>
