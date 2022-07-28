@@ -10,6 +10,7 @@ import sqlite3
 from functools import wraps
 from sqlalchemy.types import String
 from flask import Flask, request, render_template, url_for, flash, redirect, g, jsonify, session
+from flask_bcrypt import Bcrypt
 from flask_session import Session
 from forms import RegistrationForm
 from flask_behind_proxy import FlaskBehindProxy
@@ -19,6 +20,7 @@ DATABASE ='./jobify.db'
 
 
 app = Flask(__name__)
+bcrypt = Bcrypt(app)
 proxied = FlaskBehindProxy(app)
 
 app.config['SECRET_KEY'] = 'f8ab5567ef84a9ee5c1e3d86bb8b9ef9'
@@ -46,14 +48,11 @@ def login_required(f):
     return decorated_function
 
 class User(db.Model):
-  try:
-        id = db.Column(db.Integer, primary_key=True)
-        username = db.Column(db.String(20), unique=True, nullable=False)
-        password = db.Column(db.String(60), nullable=False)
-  except Exception as e:
-        print('hi')
-  def __repr__(self):
-    return f"User('{self.username}', '{self.id}')"
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    password = db.Column(db.String(60), nullable=False)
+    def __repr__(self):
+        return f"User('{self.username}', '{self.id}')"
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -68,11 +67,12 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 def valid_login(username, password):
-    user = query_db('select * from User where username = ? and password = ?', [username, password], one=True)
+    user = query_db('select * from User where username = ?', [username], one=True)
     if user is None:
         return False
-    else:
-        return True
+    hashed_pw = user[2]
+    return bcrypt.check_password_hash(hashed_pw, password)
+
 @app.route("/logout")
 def logout_user():
     session.clear()
@@ -168,7 +168,8 @@ def register_form():
     form = RegistrationForm()
     if form.validate_on_submit() and request.method == 'POST':
         try:
-            user = User(username=form.username.data, password=form.password.data)
+            hashed_pw = bcrypt.generate_password_hash(form.password.data)
+            user = User(username=form.username.data, password=hashed_pw)
             # engine = db.create_engine('sqlite:///jobify.db', {})
             # id = engine.execute("INSERT INTO user (username, password) VALUES(?, ?)", form.username.data, form.password.data)
             # print(id)
@@ -182,8 +183,9 @@ def register_form():
             else:
                 flash('Error: Try Again', 'error')
             return redirect(url_for('register_form'))
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('homepage'))
+        else:
+            flash(f'Account created for {form.username.data}!', 'success')
+            return redirect(url_for('homepage'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -204,7 +206,7 @@ def login():
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
     db.create_all()
-
+# comment for testing git mob
 '''# interchange use of API Keys to limit searches to not get 100
 API_KEYS = ('e21193f2b2ee7a0a7042c7a414822b20b10c84609c42a408732401d8b62ddc06',
             '9e8e77e8075bf5f1bfbbef8848ba3b735d1cf01e0490877307eded9945e41777')
