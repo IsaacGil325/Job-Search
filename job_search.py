@@ -96,6 +96,7 @@ class SavedJob(db.Model):
 
 @app.route("/saved_jobs", methods=('GET', 'POST'))
 def save_job():
+    #new comment test
     # print(request_data.get('job_title'))
     #get value from checkbox?
     if request.method == 'POST':
@@ -201,6 +202,17 @@ def login():
             error = 'Invalid username/password'
 
     return render_template('login.html', error=error)
+
+@app.route('/delete_job', methods=('GET', 'POST'))
+def delete_job():
+    if request.method == 'POST':
+        job_title = request.json.get('job_title')
+        engine = db.create_engine('sqlite:///jobify.db', {})
+        # query = engine.execute(f"DELETE FROM saved_job WHERE job_description = '{job_description}';").fetchall()
+        query = engine.execute(f"DELETE FROM saved_job WHERE job_title = '{job_title}';")
+        db.session.commit()
+        return render_template('delete_job.html')
+
 
 
 if __name__ == '__main__':
