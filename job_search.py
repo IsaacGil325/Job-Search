@@ -70,7 +70,7 @@ def valid_login(username, password):
     user = query_db('select * from User where username = ?', [username], one=True)
     if user is None:
         return False
-    hashed_pw = user.password
+    hashed_pw = user[2]
     return bcrypt.check_password_hash(hashed_pw, password)
 
 @app.route("/logout")
@@ -183,8 +183,8 @@ def register_form():
             else:
                 flash('Error: Try Again', 'error')
             return redirect(url_for('register_form'))
-        flash(f'Account created for {form.username.data}!', 'success')
         else:
+            flash(f'Account created for {form.username.data}!', 'success')
             return redirect(url_for('homepage'))
     return render_template('register.html', title='Register', form=form)
 
