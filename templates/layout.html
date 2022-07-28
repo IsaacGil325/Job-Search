@@ -81,7 +81,11 @@
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% if session['username'] %}
+<<<<<<< HEAD
+                                        <a href="{{ url_for('homepage') }}" class="btn head-btn1"> {{ session['username'] }}</a>
+=======
                                         <a href="{{ url_for('homepage') }}" class="btn head-btn1">{{ session['username'] }}</a>
+>>>>>>> master
                                         <a href="{{ url_for('logout_user') }}" class="btn head-btn2">Logout</a>
                                     {% else %}
                                     <a href="{{ url_for('register_form') }}" class="btn head-btn1">Register</a>
@@ -145,6 +149,7 @@
         <script src="{{ url_for('static', filename='assets/fonts/fa-brands-400.ttf') }}"></script>
         <script src="{{ url_for('static', filename='assets/fonts/fa-brands-400.woff2') }}"></script>
         <script src="{{ url_for('static', filename='assets/js/getResults.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/getDelete.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
 
         <!-- importing images -->
