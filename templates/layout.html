@@ -81,11 +81,7 @@
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% if session['username'] %}
-<<<<<<< HEAD
-                                        <a href="{{ url_for('homepage') }}" class="btn head-btn1"> {{ session['username'] }}</a>
-=======
                                         <a href="{{ url_for('homepage') }}" class="btn head-btn1">{{ session['username'] }}</a>
->>>>>>> master
                                         <a href="{{ url_for('logout_user') }}" class="btn head-btn2">Logout</a>
                                     {% else %}
                                     <a href="{{ url_for('register_form') }}" class="btn head-btn1">Register</a>
