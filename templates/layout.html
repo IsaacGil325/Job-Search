@@ -73,6 +73,7 @@
                                             <li><a href="{{ url_for('homepage') }}">Home</a></li>
                                             <li><a href="{{ url_for('job_search') }}">Search Jobs</a></li>
                                             <li><a href="{{ url_for('saved_jobs_page') }}">Saved Jobs</a></li>
+                                            <li><a href="{{ url_for('resume_builder') }}">Resume Builder</a></li>
                                             <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
                                             <li><a href="{{ url_for('about_page') }}">About</a></li>
                                         </ul>
@@ -81,11 +82,7 @@
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% if session['username'] %}
-<<<<<<< HEAD
-                                        <a href="{{ url_for('homepage') }}" class="btn head-btn1"> {{ session['username'] }}</a>
-=======
                                         <a href="{{ url_for('homepage') }}" class="btn head-btn1">{{ session['username'] }}</a>
->>>>>>> master
                                         <a href="{{ url_for('logout_user') }}" class="btn head-btn2">Logout</a>
                                     {% else %}
                                     <a href="{{ url_for('register_form') }}" class="btn head-btn1">Register</a>

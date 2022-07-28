@@ -67,17 +67,15 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 def valid_login(username, password):
-    user = query_db('select * from User where username = ?', [username], one=True)
-    if user is None:
-        return False
-<<<<<<< HEAD
-    else:
-        return True
-=======
-    hashed_pw = user[2]
-    return bcrypt.check_password_hash(hashed_pw, password)
+    try:
+        user = query_db('select * from User where username = ?', [username], one=True)
+        if user is None:
+            return False
+        hashed_pw = user[2]
+        return bcrypt.check_password_hash(hashed_pw, password)
+    except ValueError as e:
+        flash("Invalid login")
 
->>>>>>> master
 @app.route("/logout")
 def logout_user():
     session.clear()
@@ -114,17 +112,14 @@ def save_job():
         db.session.commit()
         # return jsonify(status="success")
         # return render_template(('saved_jobs.html'), job_title=job_title, company_name=company_name, job_location=job_location, job_description=job_description)
-        
 
-    # results = {'processed': 'true'}
-    # print(jsonify(results))
- 
-#  results = {'processed': 'true'}
-#  return jsonify(results)
-#         saved_job = SavedJob(job_title=job_title,company_name=company_name, location=location, description=description)
-#         db.session.add(saved_job)
-#         db.session.commit()
+@app.route("/resume-builder")
+def resume_builder():
+    return render_template('resume-builder.html')
+    #get info from form, present it as a template
 
+def resume_display():
+    pass
 
 
 @app.route("/")
@@ -211,6 +206,7 @@ def login():
 @app.route('/delete_job', methods=('GET', 'POST'))
 def delete_job():
     if request.method == 'POST':
+        print("Post request working")
         job_title = request.json.get('job_title')
         engine = db.create_engine('sqlite:///jobify.db', {})
         # query = engine.execute(f"DELETE FROM saved_job WHERE job_description = '{job_description}';").fetchall()
