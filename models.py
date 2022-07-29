@@ -12,7 +12,7 @@ migrate = Migrate(app, db)
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(20), unique=True, nullable=False)
+    username = db.Column(db.String(20), unique=True)
     password = db.Column(db.String(60), nullable=False)
     def __repr__(self):
         return f"User('{self.username}', '{self.id}')"
@@ -23,7 +23,7 @@ class SavedJob(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     # could make the username a foreign key, would need to change how SavedJob instances are created but this works fine for now
     username = db.Column(db.String(), nullable=False)
-    job_id = db.column(db.String())
+    job_id = db.Column(db.String())
     job_title=db.Column(db.String())
     company_name=db.Column(db.String())
     location=db.Column(db.String())

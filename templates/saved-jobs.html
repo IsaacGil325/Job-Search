@@ -16,7 +16,7 @@
     {%for job in jobs %}
     <tr id={{ job['job_id'] }}>
       <th scope="row">{{loop.index}}</th>
-      <td id="job_title_{{job['job_id']|safe}}">{{job[2]}}</td>
+      <td id="job_title_{{job['job_id']}}">{{job[2]}}</td>
       <td id="company_name_{{job['job_id']}}">{{job[3]}}</td>
       <td id="job_location_{{job['job_id']}}">{{job[4]}}</td>
       <td id="job_description_{{job['job_id']}}">{{job[5]|truncate(500)}}<span onclick="viewFullDescription('{{ job['description'] }}')">(view full description)</span></td>

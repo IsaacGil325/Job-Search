@@ -74,6 +74,7 @@ def save_job():
     #get value from checkbox?
     if request.method == 'POST':
         job_id = request.json.get('job_id')
+        print(job_id)
         job_title = request.json.get('job_title')
         company_name = request.json.get('company_name')
         job_location = request.json.get('location')
@@ -84,9 +85,10 @@ def save_job():
                             company_name=company_name,
                             location=job_location,
                             description=job_description)
+        print(savedjob)
         db.session.add(savedjob)
         db.session.commit()
-        # return jsonify(status="success")
+        return jsonify(status="success")
         # return render_template(('saved_jobs.html'), job_title=job_title, company_name=company_name, job_location=job_location, job_description=job_description)
         
 
@@ -136,7 +138,7 @@ def about_page():
 def saved_jobs_page():
     engine = db.create_engine('sqlite:///jobify.db', {})
     query = engine.execute(f"SELECT * FROM saved_job WHERE username = '{session['username']}';").fetchall()
-    # jobs_saved = saved_job.query.all()
+    print(query)
     return render_template('saved-jobs.html', jobs = query)
 
 @app.route("/contact")
@@ -182,6 +184,7 @@ def login():
 @app.route('/delete_job', methods=('GET', 'POST'))
 def delete_job():
     if request.method == 'POST':
+        print(request.json)
         job_id = request.json.get('job_id')
         job_title = request.json.get('job_title')
         print(job_id)

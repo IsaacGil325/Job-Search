@@ -4,6 +4,7 @@ function getDelete(job_id) {
   // var job_location = document.getElementById("job_location_"+job_id).innerText;
   // var job_description = document.getElementById("job_description_"+job_id).innerText;
 
+  console.log('job id:', job_id);
   $.ajax({
     type: "POST",
     url: "delete_job",
