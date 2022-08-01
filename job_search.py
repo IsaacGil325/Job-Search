@@ -11,8 +11,6 @@ from functools import wraps
 from sqlalchemy.types import String
 from flask import request, render_template, url_for, flash, redirect, g, jsonify, session
 from flask_session import Session
-
-
 from forms import RegistrationForm, ResumeForm
 from flask_behind_proxy import FlaskBehindProxy
 
@@ -245,7 +243,6 @@ def job_search():
 def jobs_list():
     return render_template('jobs_list.html')
 
-
 @app.route("/about")
 @login_required
 def about_page():
@@ -285,7 +282,6 @@ def register_form():
             return redirect(url_for('homepage'))
     return render_template('register.html', title='Register', form=form)
 
-
 @app.route('/login', methods=('GET', 'POST'))
 def login():
     error = None
@@ -296,26 +292,16 @@ def login():
             return log_the_user_in(request.form['username'])
         else:
             error = 'Invalid username/password'
-
     return render_template('login.html', error=error)
 
 @app.route('/delete_job', methods=('GET', 'POST'))
 def delete_job():
     if request.method == 'POST':
-<<<<<<< HEAD
-        print(request.json)
         job_id = request.json.get('job_id')
-=======
-        print("Post request working")
->>>>>>> d4ac1ae0fcb4c0410740dbc60b2dbc2201df21dd
-        job_title = request.json.get('job_title')
-        print(job_id)
         engine = db.create_engine('sqlite:///jobify.db', {})
         query = engine.execute(f"DELETE FROM saved_job WHERE job_id = '{job_id}' AND username = '{session['username']}';")
         db.session.commit()
         return render_template('delete_job.html')
-
-
 
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
