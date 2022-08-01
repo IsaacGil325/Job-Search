@@ -128,6 +128,7 @@ def resume_display():
             email = request.form.get('email')
             phone_number = request.form.get('phone_number')
             education = request.form.get('phone_number')
+            education_address = request.form.get('education_address')
             major = request.form.get('major')
             gpa = request.form.get('gpa')
             skill_title1 = request.form.get('skill_title1')
@@ -188,7 +189,8 @@ def resume_display():
         except KeyError:
             flash('Error: Try Again')
     return render_template('resume_display.html', name = name, title = title, email = email,
-            phone_number = phone_number, education = phone_number, major = major, gpa = gpa,
+            phone_number = phone_number, education = education,
+            major = major, gpa = gpa, education_address = education_address,
             skill_title1 = skill_title1, skill_description1 = skill_description1,
             skill_title2 = skill_title2, skill_description2 = skill_description2,
             skill_title3 = skill_title3, skill_description3 = skill_description3,

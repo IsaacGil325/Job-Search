@@ -22,7 +22,8 @@ class ResumeForm(FlaskForm):
                         validators=[DataRequired(), Email()])
     phone_number = StringField('Phone', validators=[DataRequired(), Length(10)])
     #education section with major and gpa 
-    education = StringField('Education/School', validators=[DataRequired(), Length(min=2, max=20)])
+    education = StringField('Education', validators=[DataRequired(), Length(min=2, max=20)])
+    education_address = StringField('Education Address', validators=[DataRequired(), Length(min=2, max=20)])
     major = StringField('Major(s)')
     gpa = StringField('GPA')
     skill_title1 = StringField('Skill1', validators=[DataRequired()])
