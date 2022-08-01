@@ -36,9 +36,18 @@
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='nice-select.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-</script>
+        
+        <!-- CSS sheets we created -->
+        <style>
+            #navigation li a{
+                font-family: 'Brush Script MT', cursive;
+                font-weight: 100;
+                font-size: 24px;
+            }
+        </style>
+        {% block stylesheets %}{% endblock %}
 
-   </head>
+    </head>
 
    <body>
     <!-- Preloader Start -->
@@ -61,9 +70,9 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
-                            <div class="logo">
+                            <h1 class="logo">
                                 <a href="/"><img src="{{ url_for('static', filename='assets/img/logo/jobify2.png') }}" alt=""></a>
-                            </div>  
+                            </h1>
                         </div>
                         <div class="col-lg-9 col-md-9">
                             <div class="menu-wrapper">
@@ -71,11 +80,11 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block" role="navigation">
                                         <ul id="navigation">
-                                            <li><a href="{{ url_for('homepage') }}" style="font-family:cursive">Home</a></li>
-                                            <li><a href="{{ url_for('job_search') }}" style="font-family:cursive">Search Jobs</a></li>
-                                            <li><a href="{{ url_for('saved_jobs_page') }}" style="font-family:cursive">Saved Jobs</a></li>
-                                            <li><a href="{{ url_for('contact_page') }}" style="font-family:cursive">Contact</a></li>
-                                            <li><a href="{{ url_for('about_page') }}" style="font-family:cursive">About</a></li>
+                                            <li><a href="{{ url_for('homepage') }}">Home</a></li>
+                                            <li><a href="{{ url_for('job_search') }}">Search Jobs</a></li>
+                                            <li><a href="{{ url_for('saved_jobs_page') }}">Saved Jobs</a></li>
+                                            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
+                                            <li><a href="{{ url_for('about_page') }}">About</a></li>
                                         </ul>
                                     </nav>
                                 </div>          
@@ -111,7 +120,7 @@
             </ul>
         {% endif %}
     {% endwith %}
-    {% block content %}{% endblock content %}
+    {% block content %}{% endblock %}
     
 
   <!-- JS here -->

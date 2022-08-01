@@ -1,0 +1,24 @@
+
+/* h1,h3{
+  text-align: center;
+  text-decoration: underline;
+  font-family: cursive;
+} */
+
+h2{
+  font-family: 'Brush Script MT', cursive;
+  font-size: 100px;
+}
+.heading{
+  font-size: 60px;
+}
+
+.login-form input{
+  border-radius: 20px;
+}
+
+
+.form-inputs-container input, .form-group{
+  width: 60%;
+  margin: 0 auto;
+}
