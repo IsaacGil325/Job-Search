@@ -16,7 +16,7 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
 class ResumeForm(FlaskForm):
-    name = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
+    name = StringField('Name', validators=[DataRequired(), Length(min=2, max=20)])
     title = StringField('Title', validators=[DataRequired(), Length(min=2, max=20)])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
