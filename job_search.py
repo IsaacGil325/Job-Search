@@ -122,8 +122,17 @@ def resume_builder():
 def resume_display():
     if request.method == 'POST':
         print(request.form.get('name'))
+        print(request.form.get('email'))
+        print(request.form.get('phone_number'))
         print(request.form.get('skill_title1'))
-        print(request.form.get('relevant_skill2'))
+        print(request.form.get('skill_description1'))
+        print(request.form.get('skill_title2'))
+        print(request.form.get('skill_description2'))
+        print(request.form.get('skill_title3'))
+        print(request.form.get('skill_description3'))
+        print(request.form.get('relevant_skill1'))
+        print(request.form.get('company1'))
+        print(request.form.get('major'))
         print(request.form.get('company1'))
 
         try:
