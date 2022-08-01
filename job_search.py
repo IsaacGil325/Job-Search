@@ -105,7 +105,8 @@ def resume_builder():
 def resume_display():
     form = ResumeForm()
     print(form.name.data)
-    if request.method == 'POST':
+    flash(form.errors)
+    if form.validate_on_submit() and request.method == 'POST':
         # print(form.name.data)
         # print(form.email.data)
         # print(request.form.get('phone_number'))

@@ -16,15 +16,15 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
 class ResumeForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired(), Length(min=2, max=20)])
-    title = StringField('Title', validators=[DataRequired(), Length(min=2, max=20)])
+    name = StringField('Name', validators=[DataRequired()])
+    title = StringField('Title', validators=[DataRequired()])
     email = StringField('Email',
                         validators=[DataRequired(), Email()])
-    phone_number = StringField('Phone', validators=[DataRequired(), Length(10)])
+    phone_number = StringField('Phone', validators=[DataRequired(), Length(12)])
     #education section with major and gpa 
-    education = StringField('Education', validators=[DataRequired(), Length(min=2, max=20)])
-    education_address = StringField('Education Address', validators=[DataRequired(), Length(min=2, max=20)])
-    major = StringField('Major(s)', validators=[DataRequired(), Length(min=2, max=20)])
+    education = StringField('Education', validators=[DataRequired()])
+    education_address = StringField('Education Address', validators=[DataRequired()])
+    major = StringField('Major(s)', validators=[DataRequired()])
     gpa = StringField('GPA')
     skill_title1 = StringField('Skill1', validators=[DataRequired()])
     skill_description1 = StringField('SkillDescription1', validators=[DataRequired()])
@@ -81,6 +81,7 @@ class ResumeForm(FlaskForm):
     interests = StringField('Interests')
     publications = StringField('Publications')
     volunteer = StringField('Volunteer')
+    submit = SubmitField('Build Resume')
 
 
 
