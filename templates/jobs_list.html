@@ -19,9 +19,8 @@
       <td id="job_title_{{job['job_id']}}">{{job['title']}}</td>
       <td id="company_name_{{job['job_id']}}">{{job['company_name']}}</td>
       <td id="job_location_{{job['job_id']}}">{{job['location']}}</td>
-      <td id="job_description_{{job['job_id']}}">{{job['description'][:500]}}<a>...(view full description)</a></td>
-      <td><input type="checkbox" id="job_save_{{job['job_id']}}" value="job" onclick = "getResults('{{job['job_id']}}');" ></td>
-
+      <td><span id="job_description_{{job['job_id']}}">{{job['description']|safe}}</span><span onclick="viewFullDescription({{ job['description'] }})">(view full description)</span></td>
+      <td><button type="submit" id="job_save_{{job['job_id']}}" value="job" onclick = "getResults('{{ job['job_id'] }}');" >Save Job</button></td>
     </tr>
     {%else%}
     <h5> No jobs to display</h5>
