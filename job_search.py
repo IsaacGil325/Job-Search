@@ -98,126 +98,132 @@ def save_job():
 @app.route("/resume-builder", methods=('GET', 'POST'))
 def resume_builder():
     form = ResumeForm()
-    return render_template('resume-builder.html', form = form)
-    #get info from form, present it as a template
-    
-@app.route("/resume_display", methods=('GET', 'POST'))
-def resume_display():
-    form = ResumeForm()
-    print(form.name.data)
-    flash(form.errors)
-    if form.validate_on_submit() and request.method == 'POST':
-        # print(form.name.data)
-        # print(form.email.data)
-        # print(request.form.get('phone_number'))
-        # print(request.form.get('skill_title1'))
-        # print(request.form.get('skill_description1'))
-        # print(request.form.get('skill_title2'))
-        # print(request.form.get('skill_description2'))
-        # print(request.form.get('skill_title3'))
-        # print(request.form.get('skill_description3'))
-        # print(request.form.get('relevant_skill1'))
-        # print(request.form.get('company1'))
-        # print(request.form.get('major'))
-        # print(request.form.get('company1'))
-
-        # # try:
-        # name = form.name.data
-        # title = form.title.data
-        # email = form.email.data
-        # phone_number = form.phone_number.data
-        # education = form.education.data
-        # education_address = form.education_address.data
-        # major = form.major.data
-        # gpa = form.gpa.data
-        # skill_title1 = form.skill_title1.data
-        # skill_description1 = form.skill_description1.data
-        # skill_title2 = form.skill_title2.data
-        # skill_description2 = form.skill_description2.data
-        # skill_title3 = form.skill_title3.data
-        # skill_description3 = form.skill_description3.data
-        # #relevant skills
-        # relevant_skill1 =  form.relevant_skill1.data
-        # relevant_skill2 =  form.relevant_skill2.data
-        # relevant_skill3 =  form.relevant_skill3.data
-        # relevant_skill4 =  form.relevant_skill4.data
-        # relevant_skill5 =  form.relevant_skill5.data
-        # relevant_skill6 =  form.relevant_skill6.data
-        # relevant_skill7 =  form.relevant_skill7.data
-        # relevant_skill8 =  form.relevant_skill8.data
-        # relevant_skill9 =  form.relevant_skill9.data
-        # relevant_skill10 =  form.relevant_skill10.data
-        # #professional exeperince section
-        # company1 = form.company1.data
-        # position1 = form.position1.data
-        # position_description1 = form.position_description1.data
-        # start_date1 = form.start_date1.data
-        # end_date1 = form.end_date1.data
-
-        # company2 = form.company2.data
-        # position2 = form.position2.data
-        # position_description2 = form.position_description2.data
-        # start_date2 = form.start_date2.data
-        # end_date2 = form.end_date2.data
-
-        # company3 = form.company3.data
-        # position3 = form.position3.data
-        # position_description3 = form.position_description3.data
-        # start_date3 = form.start_date3.data
-        # end_date3 = form.end_date3.data
-
-        # company4 = form.company4.data
-        # position4 = form.position4.data
-        # position_description4 = form.position_description4.data
-        # start_date4 = form.start_date4.data
-        # end_date4 = form.end_date4.data
-
-        # company5 = form.company5.data
-        # position5 = form.position5.data
-        # position_description5 = form.position_description5.data
-        # start_date5 = form.start_date5.data
-        # end_date5 = form.end_date5.data
-
-        # #Affiliations/Interests Tab
-        # affiliations = form.affiliations.data
-        # certifications = form.certifications.data
-        # awards = form.awards.data
-        # interests = form.interests.data
-        # publications = form.publications.data
-        # volunteer = form.volunteer.data 
-        # except:
-        #     flash('Error: Key information missing')
+    if request.method == 'POST':
+        print('POST is working')
         return render_template('resume_display.html', form = form)
+    return render_template('resume-builder.html', form = form)
 
-        # return render_template('resume_display.html', name = name, title = title, email = email,
-            # phone_number = phone_number, education = education,
-            # major = major, gpa = gpa, education_address = education_address,
-            # skill_title1 = skill_title1, skill_description1 = skill_description1,
-            # skill_title2 = skill_title2, skill_description2 = skill_description2,
-            # skill_title3 = skill_title3, skill_description3 = skill_description3,
-            # relevant_skill1 =  relevant_skill1, relevant_skill2 =  relevant_skill2,
-            # relevant_skill3 =  relevant_skill3, relevant_skill4 =  relevant_skill4,
-            # relevant_skill5 =  relevant_skill5, relevant_skill6 =  relevant_skill6,
-            # relevant_skill7 =  relevant_skill7, relevant_skill8 =  relevant_skill8,
-            # relevant_skill9 =  relevant_skill9, relevant_skill10 =  relevant_skill10,
-            # company1 = company1, position1 = position1, 
-            # position_description1 = position_description1,
-            # start_date1 = start_date1, end_date1 = end_date1, company2 = company2, 
-            # position2 = position2,
-            # position_description2 = position_description2, start_date2 = start_date2, 
-            # end_date2 = end_date2, company3 = company3, position3 = position3,
-            # position_description3 = position_description3,
-            # start_date3 = start_date3, end_date3 = end_date3,company4 = company4, 
-            # position4 = position4, position_description4 = position_description4, 
-            # start_date4 = start_date4, end_date4 = end_date4,
-            # company5 = company5, position5 = position5,
-            # position_description5 = position_description5, start_date5 = start_date5,
-            # end_date5 = end_date5, affiliations = affiliations,
-            # certifications = certifications, awards = awards, interests = interests,
-            # publications = publications, volunteer = volunteer )
-    else:
-        flash('Error: Key information missing')
-        return render_template('resume-builder.html', form=form)
+# def fill_out_form():
+#     for each div in the request:
+#         form.skill[i] = StringField(and so on)
+
+# @app.route("/resume_display", methods=('GET', 'POST'))
+# def resume_display():
+#     # form = ResumeForm()
+#     print(form.name.data)
+#     flash(form.errors)
+#     if form.validate_on_submit() and request.method == 'POST':
+#         # print(form.name.data)
+#         # print(form.email.data)
+#         # print(request.form.get('phone_number'))
+#         # print(request.form.get('skill_title1'))
+#         # print(request.form.get('skill_description1'))
+#         # print(request.form.get('skill_title2'))
+#         # print(request.form.get('skill_description2'))
+#         # print(request.form.get('skill_title3'))
+#         # print(request.form.get('skill_description3'))
+#         # print(request.form.get('relevant_skill1'))
+#         # print(request.form.get('company1'))
+#         # print(request.form.get('major'))
+#         # print(request.form.get('company1'))
+
+#         # # try:
+#         # name = form.name.data
+#         # title = form.title.data
+#         # email = form.email.data
+#         # phone_number = form.phone_number.data
+#         # education = form.education.data
+#         # education_address = form.education_address.data
+#         # major = form.major.data
+#         # gpa = form.gpa.data
+#         # skill_title1 = form.skill_title1.data
+#         # skill_description1 = form.skill_description1.data
+#         # skill_title2 = form.skill_title2.data
+#         # skill_description2 = form.skill_description2.data
+#         # skill_title3 = form.skill_title3.data
+#         # skill_description3 = form.skill_description3.data
+#         # #relevant skills
+#         # relevant_skill1 =  form.relevant_skill1.data
+#         # relevant_skill2 =  form.relevant_skill2.data
+#         # relevant_skill3 =  form.relevant_skill3.data
+#         # relevant_skill4 =  form.relevant_skill4.data
+#         # relevant_skill5 =  form.relevant_skill5.data
+#         # relevant_skill6 =  form.relevant_skill6.data
+#         # relevant_skill7 =  form.relevant_skill7.data
+#         # relevant_skill8 =  form.relevant_skill8.data
+#         # relevant_skill9 =  form.relevant_skill9.data
+#         # relevant_skill10 =  form.relevant_skill10.data
+#         # #professional exeperince section
+#         # company1 = form.company1.data
+#         # position1 = form.position1.data
+#         # position_description1 = form.position_description1.data
+#         # start_date1 = form.start_date1.data
+#         # end_date1 = form.end_date1.data
+
+#         # company2 = form.company2.data
+#         # position2 = form.position2.data
+#         # position_description2 = form.position_description2.data
+#         # start_date2 = form.start_date2.data
+#         # end_date2 = form.end_date2.data
+
+#         # company3 = form.company3.data
+#         # position3 = form.position3.data
+#         # position_description3 = form.position_description3.data
+#         # start_date3 = form.start_date3.data
+#         # end_date3 = form.end_date3.data
+
+#         # company4 = form.company4.data
+#         # position4 = form.position4.data
+#         # position_description4 = form.position_description4.data
+#         # start_date4 = form.start_date4.data
+#         # end_date4 = form.end_date4.data
+
+#         # company5 = form.company5.data
+#         # position5 = form.position5.data
+#         # position_description5 = form.position_description5.data
+#         # start_date5 = form.start_date5.data
+#         # end_date5 = form.end_date5.data
+
+#         # #Affiliations/Interests Tab
+#         # affiliations = form.affiliations.data
+#         # certifications = form.certifications.data
+#         # awards = form.awards.data
+#         # interests = form.interests.data
+#         # publications = form.publications.data
+#         # volunteer = form.volunteer.data 
+#         # except:
+#         #     flash('Error: Key information missing')
+#         return render_template('resume_display.html', form = form)
+
+#         # return render_template('resume_display.html', name = name, title = title, email = email,
+#             # phone_number = phone_number, education = education,
+#             # major = major, gpa = gpa, education_address = education_address,
+#             # skill_title1 = skill_title1, skill_description1 = skill_description1,
+#             # skill_title2 = skill_title2, skill_description2 = skill_description2,
+#             # skill_title3 = skill_title3, skill_description3 = skill_description3,
+#             # relevant_skill1 =  relevant_skill1, relevant_skill2 =  relevant_skill2,
+#             # relevant_skill3 =  relevant_skill3, relevant_skill4 =  relevant_skill4,
+#             # relevant_skill5 =  relevant_skill5, relevant_skill6 =  relevant_skill6,
+#             # relevant_skill7 =  relevant_skill7, relevant_skill8 =  relevant_skill8,
+#             # relevant_skill9 =  relevant_skill9, relevant_skill10 =  relevant_skill10,
+#             # company1 = company1, position1 = position1, 
+#             # position_description1 = position_description1,
+#             # start_date1 = start_date1, end_date1 = end_date1, company2 = company2, 
+#             # position2 = position2,
+#             # position_description2 = position_description2, start_date2 = start_date2, 
+#             # end_date2 = end_date2, company3 = company3, position3 = position3,
+#             # position_description3 = position_description3,
+#             # start_date3 = start_date3, end_date3 = end_date3,company4 = company4, 
+#             # position4 = position4, position_description4 = position_description4, 
+#             # start_date4 = start_date4, end_date4 = end_date4,
+#             # company5 = company5, position5 = position5,
+#             # position_description5 = position_description5, start_date5 = start_date5,
+#             # end_date5 = end_date5, affiliations = affiliations,
+#             # certifications = certifications, awards = awards, interests = interests,
+#             # publications = publications, volunteer = volunteer )
+#     else:
+#         flash('Error: Key information missing')
+#         return render_template('resume-builder.html', form=form)
     
 
 @app.route("/")

@@ -6,13 +6,23 @@
         <h3 style = "text-align: center;"> Build a Resume </h3>
 
         <!-- <embed type="text/html" src="{{ url_for('static', filename='templates/resume-look.html') }}" width="500" height="200"> -->
-            <form action="{{ url_for('resume_display') }}" method="POST">
+            <form action="{{ url_for('resume_builder') }}" method="POST">
 
             <!-- <! <div class="form-group">
                 <label for="exampleFormControlInput1">Name: </label>
                 <input type="text" name = "name" class="form-control" id="exampleFormControlInput1" placeholder="">
           -->
-        <div class="form-group">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-personal-info-tab" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="true">Personal</a>
+                <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education</a>
+                <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab" href="#nav-experience" role="tab" aria-controls="nav-experience" aria-selected="false">Experience</a>
+                <a class="nav-item nav-link" id="nav-skills-interests-tab" data-toggle="tab" href="#nav-skills-interests" role="tab" aria-controls="nav-skills-interests" aria-selected="false">Skills</a>
+            </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
+                <div class="form-group">
             {{ form.name.label(class="form-control-label") }}
             {% if form.name.errors %}
             {{ form.name(class="form-control form-control-lg is-invalid") }}
@@ -65,203 +75,9 @@
             {{ form.phone_number(class="form-control form-control-lg") }}
         {% endif %}
             </div>
-            <div class="form-group">
-            {{ form.skill_title1.label(class="form-control-label") }}
-            {% if form.skill_title1.errors %}
-            {{ form.skill_title1(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.skill_title1.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
             </div>
-        {% else %}
-            {{ form.skill_title1(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.skill_description1.label(class="form-control-label") }}
-            {% if form.skill_description1.errors %}
-            {{ form.skill_description1(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.skill_description1.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.skill_description1(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Skill 2: </label>
-                <input type="text" name = "skill_title2" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Skill Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "skill_description2" rows="3"></textarea>
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Skill 3: </label>
-                <input type="text" name = "skill_title3" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Skill Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "skill_description3" rows="3"></textarea>
-            </div>
-            <div class="form-group">
-            {{ form.relevant_skill1.label(class="form-control-label") }}
-            {% if form.relevant_skill1.errors %}
-            {{ form.relevant_skill1(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.relevant_skill1.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.relevant_skill1(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.relevant_skill2.label(class="form-control-label") }}
-            {% if form.relevant_skill2.errors %}
-            {{ form.relevant_skill2(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.relevant_skill2.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.relevant_skill2(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.relevant_skill3.label(class="form-control-label") }}
-            {% if form.relevant_skill3.errors %}
-            {{ form.relevant_skill3(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.relevant_skill3.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.relevant_skill3(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 4: </label>
-                <input type="text" name = "relevant_skill4" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 5: </label>
-                <input type="text" name = "relevant_skill5" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 6: </label>
-                <input type="text" name = "relevant_skill6" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 7: </label>
-                <input type="text" name = "relevant_skill7" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 8: </label>
-                <input type="text" name = "relevant_skill8" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 9: </label>
-                <input type="text" name = "relevant_skill9" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Relevant Skill 10: </label>
-                <input type="text" name = "relevant_skill10" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Company Name: </label>
-                <input type="text" name = "company1" class="form-control" id="exampleFormControlInput1" placeholder="Apple Inc">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Position: </label>
-                <input type="text" name = "position1" class="form-control" id="exampleFormControlInput1" placeholder="Frontend Engineer">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Start Date: </label>
-                <input type="text" name = "start_date1" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">End Date: </label>
-                <input type="text" name = "end_date1" class="form-control" id="exampleFormControlInput1" placeholder="present">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Position Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description1" rows="3"></textarea>
-            </div>
-
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Company Name: </label>
-                <input type="text" name = "company2" class="form-control" id="exampleFormControlInput1" placeholder="Google">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Position: </label>
-                <input type="text" name = "position2" class="form-control" id="exampleFormControlInput1" placeholder="Product Manager">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Start Date: </label>
-                <input type="text" name = "start_date2" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">End Date: </label>
-                <input type="text" name = "end_date2" class="form-control" id="exampleFormControlInput1" placeholder="Dec 2021">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Position Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description2" rows="3"></textarea>
-            </div>
-
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Company Name: </label>
-                <input type="text" name = "company3" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Position: </label>
-                <input type="text" name = "position3" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Start Date: </label>
-                <input type="text" name = "start_date3" class="form-control" id="exampleFormControlInput1" placeholder="June 2018">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">End Date: </label>
-                <input type="text" name = "end_date3" class="form-control" id="exampleFormControlInput1" placeholder="Aug 2019">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Position Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description3" rows="3"></textarea>
-            </div>
-
-            <div class="form-group">
-            <label for="exampleFormControlInput1">Company Name: </label>
-            <input type="text" name = "company4" class="form-control" id="exampleFormControlInput1" placeholder="Apple Inc">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Position: </label>
-                <input type="text" name = "position4" class="form-control" id="exampleFormControlInput1" placeholder="Frontend Engineer">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Start Date: </label>
-                <input type="text" name = "start_date4" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">End Date: </label>
-                <input type="text" name = "end_date4" class="form-control" id="exampleFormControlInput1" placeholder="Dec 2021">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Position Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description4" rows="3"></textarea>
-            </div>
-        <!-- Education info -->
-            <div class="form-group">
+            <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+                <div class="form-group">
             {{ form.education.label(class="form-control-label") }}
             {% if form.education.errors %}
             {{ form.education(class="form-control form-control-lg is-invalid") }}
@@ -304,10 +120,62 @@
                 <label for="exampleFormControlInput1">GPA: </label>
                 <input type="text" name = "gpa" class="form-control" id="exampleFormControlInput1" placeholder="">
             </div>
+            </div>
+            <div class="tab-pane fade" id="nav-experience" role="tabpanel" aria-labelledby="nav-experience-tab">
+                <div class="form-group">
+                <label for="exampleFormControlInput1">Company Name: </label>
+                <input type="text" name = "company1" class="form-control" id="exampleFormControlInput1" placeholder="Apple Inc">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Position: </label>
+                <input type="text" name = "position1" class="form-control" id="exampleFormControlInput1" placeholder="Frontend Engineer">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Start Date: </label>
+                <input type="text" name = "start_date1" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">End Date: </label>
+                <input type="text" name = "end_date1" class="form-control" id="exampleFormControlInput1" placeholder="present">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Position Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description1" rows="3"></textarea>
+            </div>
+            </div>
+            <div class="tab-pane fade" id="nav-skills-interests" role="tabpanel" aria-labelledby="nav-skills-interests-tab">
+                <div class="form-group">
+            {{ form.skill_title1.label(class="form-control-label") }}
+            {% if form.skill_title1.errors %}
+            {{ form.skill_title1(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skill_title1.errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.skill_title1(class="form-control form-control-lg") }}
+        {% endif %}
+            </div>
+            <div class="form-group">
+            {{ form.skill_description1.label(class="form-control-label") }}
+            {% if form.skill_description1.errors %}
+            {{ form.skill_description1(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.skill_description1.errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.skill_description1(class="form-control form-control-lg") }}
+        {% endif %}
+            </div>
+            </div>
+        </div>
             <div class="form-group">
              {{ form.submit(class="btn btn-outline-info") }}
             </div>
-            <!-- <input class="btn btn-outline-info" type="submit" value="Submit"><br> -->
+            <input class="btn btn-outline-info" type="submit" value="Submit"><br>
             </form>
 
     </div>
