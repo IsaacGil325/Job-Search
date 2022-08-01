@@ -11,13 +11,10 @@ from functools import wraps
 from sqlalchemy.types import String
 from flask import request, render_template, url_for, flash, redirect, g, jsonify, session
 from flask_session import Session
-<<<<<<< HEAD
-from forms import RegistrationForm
-=======
+
+
 from forms import RegistrationForm, ResumeForm
 from flask_behind_proxy import FlaskBehindProxy
-from flask_sqlalchemy import SQLAlchemy
->>>>>>> d4ac1ae0fcb4c0410740dbc60b2dbc2201df21dd
 
 from headers import app, bcrypt
 from models import db, User, SavedJob
@@ -56,22 +53,14 @@ def query_db(query, args=(), one=False):
     return (rv[0] if rv else None) if one else rv
 
 def valid_login(username, password):
-<<<<<<< HEAD
-    user = query_db('select * from user where username = ?', [username], one=True)
-    if user is None:
-        return False
-    hashed_pw = user[2]
-    return bcrypt.check_password_hash(hashed_pw, password)
-=======
     try:
-        user = query_db('select * from User where username = ?', [username], one=True)
+        user = query_db('select * from user where username = ?', [username], one=True)
         if user is None:
             return False
         hashed_pw = user[2]
         return bcrypt.check_password_hash(hashed_pw, password)
     except ValueError as e:
         flash("Invalid login")
->>>>>>> d4ac1ae0fcb4c0410740dbc60b2dbc2201df21dd
 
 @app.route("/logout")
 def logout_user():
