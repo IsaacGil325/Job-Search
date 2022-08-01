@@ -2,11 +2,11 @@
 <html class="no-js" lang="zxx">
 <link rel="icon" href="{{ url_for('static', filename='/assets/img/logo/logo1.png') }}" />    
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Jobify</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <meta charset="utf-8"> -->
+        <!-- <meta http-equiv="x-ua-compatible" content="ie=edge"> -->
+        <!-- <title>Jobify</title> -->
+        <!-- <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
 
 		<!-- CSS here -->
@@ -53,57 +53,8 @@
             </div>
         </div>
     </div>
-    <!-- Preloader Start -->
-    <header role="banner">
-        <!-- Header Start -->
-       <div class="header-area header-transparrent">
-           <div class="headder-top header-sticky">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 col-md-2">
-                            <!-- Logo -->
-                            <div class="logo">
-                                <a href="/"><img src="{{ url_for('static', filename='assets/img/logo/jobify2.png') }}" alt=""></a>
-                            </div>  
-                        </div>
-                        <div class="col-lg-9 col-md-9">
-                            <div class="menu-wrapper">
-                                <!-- Main-menu -->
-                                <div class="main-menu">
-                                    <nav class="d-none d-lg-block" role="navigation">
-                                        <ul id="navigation">
-                                            <li><a href="{{ url_for('homepage') }}">Home</a></li>
-                                            <li><a href="{{ url_for('job_search') }}">Search Jobs</a></li>
-                                            <li><a href="{{ url_for('saved_jobs_page') }}">Saved Jobs</a></li>
-                                            <li><a href="{{ url_for('resume_builder') }}">Resume Builder</a></li>
-                                            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
-                                            <li><a href="{{ url_for('about_page') }}">About</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>          
-                                <!-- Header-btn -->
-                                <div class="header-btn d-none f-right d-lg-block">
-                                    {% if session['username'] %}
-                                        <a href="{{ url_for('homepage') }}" class="btn head-btn1">{{ session['username'] }}</a>
-                                        <a href="{{ url_for('logout_user') }}" class="btn head-btn2">Logout</a>
-                                    {% else %}
-                                    <a href="{{ url_for('register_form') }}" class="btn head-btn1">Register</a>
-                                    <a href="{{ url_for('login') }}" class="btn head-btn2">Login</a>
-                                    {%endif%}
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Mobile Menu -->
-                        <div class="col-12">
-                            <div class="mobile_menu d-block d-lg-none"></div>
-                        </div>
-                    </div>
-                </div>
-           </div>
-       </div>
-        <!-- Header End -->
-    </header>
-    {% with messages = get_flashed_messages() %}
+
+     {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class=flashes>
                 {% for message in messages %}
@@ -113,9 +64,8 @@
         {% endif %}
     {% endwith %}
     {% block content %}{% endblock content %}
-    
 
-  <!-- JS here -->
+<!-- JS here -->
 
 		<!-- All JS Custom Plugins Link Here here -->
         <script src="{{ url_for('static', filename='assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>

@@ -7,9 +7,24 @@
 
         <!-- <embed type="text/html" src="{{ url_for('static', filename='templates/resume-look.html') }}" width="500" height="200"> -->
             <form action="{{ url_for('resume_display') }}" method="POST">
-            <div class="form-group">
+
+            <!-- <! <div class="form-group">
                 <label for="exampleFormControlInput1">Name: </label>
                 <input type="text" name = "name" class="form-control" id="exampleFormControlInput1" placeholder="">
+          -->
+        <div class="form-group">
+            {{ form.name.label(class="form-control-label") }}
+            {% if form.name.errors %}
+            {{ form.name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.name.errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.name(class="form-control form-control-lg") }}
+        {% endif %}
+        </div>
             </div>
             <div class="form-group">
                 <label for="exampleFormControlInput1">Job Title: </label>
@@ -122,7 +137,7 @@
             </div>
              <div class="form-group">
                 <label for="exampleFormControlInput1">Start Date: </label>
-                <input type="text" name = "start_date12" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
+                <input type="text" name = "start_date2" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
             </div>
              <div class="form-group">
                 <label for="exampleFormControlInput1">End Date: </label>
