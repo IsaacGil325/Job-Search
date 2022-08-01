@@ -113,14 +113,106 @@ def save_job():
         # return jsonify(status="success")
         # return render_template(('saved_jobs.html'), job_title=job_title, company_name=company_name, job_location=job_location, job_description=job_description)
 
-@app.route("/resume-builder")
+@app.route("/resume-builder", methods=('GET', 'POST'))
 def resume_builder():
     return render_template('resume-builder.html')
     #get info from form, present it as a template
-
+    
+@app.route("/resume_display", methods=('GET', 'POST'))
 def resume_display():
-    pass
+    if request.method == 'POST':
+        print(request.form.get('name'))
+        try:
+            name = request.form.get('name')
+            title = request.form.get('title')
+            email = request.form.get('email')
+            phone_number = request.form.get('phone_number')
+            education = request.form.get('phone_number')
+            major = request.form.get('major')
+            gpa = request.form.get('gpa')
+            skill_title1 = request.form.get('skill_title1')
+            skill_description1 = request.form.get('skill_description1')
+            skill_title2 = request.form.get('skill_title2')
+            skill_description2 = request.form.get('skill_description2')
+            skill_title3 = request.form.get('skill_title3')
+            skill_description3 = request.form.get('skill_description3')
+            #relevant skills
+            relevant_skill1 =  request.form.get('relevant_skill1')
+            relevant_skill2 =  request.form.get('relevant_skill2')
+            relevant_skill3 =  request.form.get('relevant_skill3')
+            relevant_skill4 =  request.form.get('relevant_skill4')
+            relevant_skill5 =  request.form.get('relevant_skill5')
+            relevant_skill6 =  request.form.get('relevant_skill6')
+            relevant_skill7 =  request.form.get('relevant_skill7')
+            relevant_skill8 =  request.form.get('relevant_skill8')
+            relevant_skill9 =  request.form.get('relevant_skill9')
+            relevant_skill10 =  request.form.get('relevant_skill10')
+            #professional exeperince section
+            company1 = request.form.get('company1')
+            position1 = request.form.get('position1')
+            position_description1 = request.form.get('position_description1')
+            start_date1 = request.form.get('start_date1')
+            end_date1 = request.form.get('end_date1')
 
+            company2 = request.form.get('company2')
+            position2 = request.form.get('position2')
+            position_description2 = request.form.get('position_description2')
+            start_date2 = request.form.get('start_date2')
+            end_date2 = request.form.get('end_date2')
+
+            company3 = request.form.get('company3')
+            position3 = request.form.get('position3')
+            position_description3 = request.form.get('position_description3')
+            start_date3 = request.form.get('start_date3')
+            end_date3 = request.form.get('end_date3')
+
+            company4 = request.form.get('company4')
+            position4 = request.form.get('position4')
+            position_description4 = request.form.get('position_description4')
+            start_date4 = request.form.get('start_date4')
+            end_date4 = request.form.get('end_date4')
+
+            company5 = request.form.get('company5')
+            position5 = request.form.get('position5')
+            position_description5 = request.form.get('position_description5')
+            start_date5 = request.form.get('start_date5')
+            end_date5 = request.form.get('end_date5')
+
+            #Affiliations/Interests Tab
+            affiliations = request.form.get('affiliations')
+            certifications = request.form.get('certifications')
+            awards = request.form.get('awards')
+            interests = request.form.get('interests')
+            publications = request.form.get('publications')
+            volunteer = request.form.get('volunteer') 
+        except KeyError:
+            flash('Error: Try Again')
+    return render_template('resume_display.html', name = name, title = title, email = email,
+            phone_number = phone_number, education = phone_number, major = major, gpa = gpa,
+            skill_title1 = skill_title1, skill_description1 = skill_description1,
+            skill_title2 = skill_title2, skill_description2 = skill_description2,
+            skill_title3 = skill_title3, skill_description3 = skill_description3,
+            relevant_skill1 =  relevant_skill1, relevant_skill2 =  relevant_skill2,
+            relevant_skill3 =  relevant_skill3, relevant_skill4 =  relevant_skill4,
+            relevant_skill5 =  relevant_skill5, relevant_skill6 =  relevant_skill6,
+            relevant_skill7 =  relevant_skill7, relevant_skill8 =  relevant_skill8,
+            relevant_skill9 =  relevant_skill9, relevant_skill10 =  relevant_skill10,
+            company1 = company1, position1 = position1, 
+            position_description1 = position_description1,
+            start_date1 = start_date1, end_date1 = end_date1, company2 = company2, 
+            position2 = position2,
+            position_description2 = position_description2, start_date2 = start_date2, 
+            end_date2 = end_date2, company3 = company3, position3 = position3,
+            position_description3 = position_description3,
+            start_date3 = start_date3, end_date3 = end_date3,company4 = company4, 
+            position4 = position4, position_description4 = position_description4, 
+            start_date4 = start_date4, end_date4 = end_date4,
+            company5 = company5, position5 = position5,
+            position_description5 = position_description5, start_date5 = start_date5,
+            end_date5 = end_date5, affiliations = affiliations,
+            certifications = certifications, awards = awards, interests = interests,
+            publications = publications, volunteer = volunteer )
+    
 
 @app.route("/")
 def homepage():
