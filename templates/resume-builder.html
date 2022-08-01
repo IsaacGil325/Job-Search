@@ -1,0 +1,216 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div>
+        <br>
+
+        <h3 style = "text-align: center;"> Build a Resume </h3>
+
+        <!-- <embed type="text/html" src="{{ url_for('static', filename='templates/resume-look.html') }}" width="500" height="200"> -->
+            <form action="{{ url_for('resume_display') }}" method="POST">
+
+            <!-- <! <div class="form-group">
+                <label for="exampleFormControlInput1">Name: </label>
+                <input type="text" name = "name" class="form-control" id="exampleFormControlInput1" placeholder="">
+          -->
+        <div class="form-group">
+            {{ form.name.label(class="form-control-label") }}
+            {% if form.name.errors %}
+            {{ form.name(class="form-control form-control-lg is-invalid") }}
+            <div class="invalid-feedback">
+                {% for error in form.name.errors %}
+                    <span>{{error}}</span>
+                {% endfor %}
+            </div>
+        {% else %}
+            {{ form.name(class="form-control form-control-lg") }}
+        {% endif %}
+        </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Job Title: </label>
+                <input type="text" name = "title" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email: </label>
+                <input type="email" name = "email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Phone Number: </label>
+                <input type="text" name = "phone_number" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Skill 1: </label>
+                <input type="text" name = "skill_title1" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Skill Description</label>
+                <textarea class="form-control" name = "skill_description1" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Skill 2: </label>
+                <input type="text" name = "skill_title2" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Skill Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "skill_description2" rows="3"></textarea>
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Skill 3: </label>
+                <input type="text" name = "skill_title3" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Skill Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "skill_description3" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 1: </label>
+                <input type="text" name = "relevant_skill1" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 2: </label>
+                <input type="text" name = "relevant_skill2" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 3: </label>
+                <input type="text" name = "relevant_skill3" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 4: </label>
+                <input type="text" name = "relevant_skill4" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 5: </label>
+                <input type="text" name = "relevant_skill5" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 6: </label>
+                <input type="text" name = "relevant_skill6" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 7: </label>
+                <input type="text" name = "relevant_skill7" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 8: </label>
+                <input type="text" name = "relevant_skill8" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 9: </label>
+                <input type="text" name = "relevant_skill9" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Relevant Skill 10: </label>
+                <input type="text" name = "relevant_skill10" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Company Name: </label>
+                <input type="text" name = "company1" class="form-control" id="exampleFormControlInput1" placeholder="Apple Inc">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Position: </label>
+                <input type="text" name = "position1" class="form-control" id="exampleFormControlInput1" placeholder="Frontend Engineer">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Start Date: </label>
+                <input type="text" name = "start_date1" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">End Date: </label>
+                <input type="text" name = "end_date1" class="form-control" id="exampleFormControlInput1" placeholder="present">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Position Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description1" rows="3"></textarea>
+            </div>
+
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Company Name: </label>
+                <input type="text" name = "company2" class="form-control" id="exampleFormControlInput1" placeholder="Google">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Position: </label>
+                <input type="text" name = "position2" class="form-control" id="exampleFormControlInput1" placeholder="Product Manager">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Start Date: </label>
+                <input type="text" name = "start_date2" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">End Date: </label>
+                <input type="text" name = "end_date2" class="form-control" id="exampleFormControlInput1" placeholder="Dec 2021">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Position Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description2" rows="3"></textarea>
+            </div>
+
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Company Name: </label>
+                <input type="text" name = "company3" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Position: </label>
+                <input type="text" name = "position3" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Start Date: </label>
+                <input type="text" name = "start_date3" class="form-control" id="exampleFormControlInput1" placeholder="June 2018">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">End Date: </label>
+                <input type="text" name = "end_date3" class="form-control" id="exampleFormControlInput1" placeholder="Aug 2019">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Position Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description3" rows="3"></textarea>
+            </div>
+
+            <div class="form-group">
+            <label for="exampleFormControlInput1">Company Name: </label>
+            <input type="text" name = "company4" class="form-control" id="exampleFormControlInput1" placeholder="Apple Inc">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Position: </label>
+                <input type="text" name = "position4" class="form-control" id="exampleFormControlInput1" placeholder="Frontend Engineer">
+            </div>
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Start Date: </label>
+                <input type="text" name = "start_date4" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">End Date: </label>
+                <input type="text" name = "end_date4" class="form-control" id="exampleFormControlInput1" placeholder="Dec 2021">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Position Description</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description4" rows="3"></textarea>
+            </div>
+        <!-- Education info -->
+             <div class="form-group">
+                <label for="exampleFormControlInput1">Education: </label>
+                <input type="text" name = "education" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">School Address: </label>
+                <input type="text" name = "education_address" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Major(s): </label>
+                <input type="text" name = "major" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">GPA: </label>
+                <input type="text" name = "gpa" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            
+            <input class="btn btn-outline-info" type="submit" value="Submit"><br>
+            </form>
+
+    </div>
+
+
+{% endblock %}
