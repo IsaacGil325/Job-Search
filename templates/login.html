@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="stylesheet" href="../static/form-style.css">
+        <link rel="stylesheet" width="120px" href="../static/form-style.css">
 
         <script>
         function validateForm() {
@@ -20,9 +20,10 @@
 </html>
 {% extends "layout.html" %}
 {% block content %}
+
         <div class="content-section form-group">
                 <form name="login-form"  action="/login" onsubmit="return validateForm()" target="_self" method="POST"  >
-                    <h2>Login:</h2>
+                    <h2 class="text-center mt-5" ><strong style="font-family:cursive">Login to your account</strong></h2>
                         <div class="invalid-feedback">
                             {% if error %}
                             <script>
@@ -30,9 +31,9 @@
                                 </script>
                             {% endif %}
                        </div>
-                    <input class="form-control form-control-lg is-invalid" type ="text" name ="username" placeholder="Username"><br>
-                    <input class="form-control form-control-lg is-invalid" type="password" name="password" placeholder="Password"><br>
-                    <input class="btn btn-outline-info" type="submit" value="Submit"><br>
+                    <input class="form-control form-control-lg is-invalid" type ="text" name ="username" style="border-radius : 20px" placeholder="Username"><br>
+                    <input class="form-control form-control-lg is-invalid" type="password" name="password" style="border-radius : 14.3rem" placeholder="Password"><br>
+                    <input class="btn btn-outline-info" type="submit" style="border-radius : 20px" value="Submit"><br>
                 </form>
         </div>
 {% endblock content %}

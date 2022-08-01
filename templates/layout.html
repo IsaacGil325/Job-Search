@@ -8,6 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 		<!-- CSS here -->
             <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -70,22 +71,23 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block" role="navigation">
                                         <ul id="navigation">
-                                            <li><a href="{{ url_for('homepage') }}">Home</a></li>
-                                            <li><a href="{{ url_for('job_search') }}">Search Jobs</a></li>
-                                            <li><a href="{{ url_for('saved_jobs_page') }}">Saved Jobs</a></li>
-                                            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
-                                            <li><a href="{{ url_for('about_page') }}">About</a></li>
+                                            <li><a href="{{ url_for('homepage') }}" style="font-family:cursive">Home</a></li>
+                                            <li><a href="{{ url_for('job_search') }}" style="font-family:cursive">Search Jobs</a></li>
+                                            <li><a href="{{ url_for('saved_jobs_page') }}" style="font-family:cursive">Saved Jobs</a></li>
+                                            <li><a href="{{ url_for('contact_page') }}" style="font-family:cursive">Contact</a></li>
+                                            <li><a href="{{ url_for('about_page') }}" style="font-family:cursive">About</a></li>
                                         </ul>
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% if session['username'] %}
-                                        <a href="{{ url_for('homepage') }}" class="btn head-btn1">{{ session['username'] }}</a>
-                                        <a href="{{ url_for('logout_user') }}" class="btn head-btn2">Logout</a>
+                                        <a href="{{ url_for('profile_settings') }}" class="btn head-btn1" style="border-radius : 20px">{{ session['username'] }}</a>
+                                        <a href="{{ url_for('logout_user') }}" class="btn head-btn2" style="border-radius : 20px">Logout</a>
+
                                     {% else %}
-                                    <a href="{{ url_for('register_form') }}" class="btn head-btn1">Register</a>
-                                    <a href="{{ url_for('login') }}" class="btn head-btn2">Login</a>
+                                    <a href="{{ url_for('register_form') }}" class="btn head-btn1" style="border-radius : 20px">Register</a>
+                                    <a href="{{ url_for('login') }}" class="btn head-btn2" style="border-radius : 20px">Login</a>
                                     {%endif%}
                                 </div>
                             </div>
