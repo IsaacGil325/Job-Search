@@ -19,7 +19,7 @@
       <td id="job_title_{{job['job_id']}}">{{job[2]}}</td>
       <td id="company_name_{{job['job_id']}}">{{job[3]}}</td>
       <td id="job_location_{{job['job_id']}}">{{job[4]}}</td>
-      <td id="job_description_{{job['job_id']}}">{{job[5]|truncate(500)}}<span onclick="viewFullDescription('{{ job['description'] }}')">(view full description)</span></td>
+      <td id="job_description_{{job['job_id']}}">{{job[5]|truncate(500)}}<!-- <span onclick="viewFullDescription('{{ job['description'] }}')">(view full description)</span>--></td>
       <td><input type="checkbox" id="job_save_{{job['job_id']}}" value="job" onclick = "getDelete('{{job['job_id']}}');" ></td>
     </tr>
     {%else%}
