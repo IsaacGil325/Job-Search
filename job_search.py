@@ -78,7 +78,7 @@ def save_job():
     #get value from checkbox?
     if request.method == 'POST':
         job_id = request.json.get('job_id')
-        print(job_id)
+        source_link = link_finder(job_id)
         job_title = request.json.get('job_title')
         company_name = request.json.get('company_name')
         job_location = request.json.get('location')
@@ -88,7 +88,8 @@ def save_job():
                             job_title=job_title,
                             company_name=company_name,
                             location=job_location,
-                            description=job_description)
+                            description=job_description,
+                            link = source_link)
         print(savedjob)
         db.session.add(savedjob)
         db.session.commit()
@@ -260,7 +261,9 @@ def about_page():
 def saved_jobs_page():
     engine = db.create_engine('sqlite:///jobify.db', {})
     query = engine.execute(f"SELECT * FROM saved_job WHERE username = '{session['username']}';").fetchall()
-    print(query)
+    query2 = engine.execute(f"SELECT job_id FROM saved_job WHERE username = '{session['username']}';").fetchall()
+    links = print_links(query2)
+    print(links)
     return render_template('saved-jobs.html', jobs = query)
 
 @app.route("/contact")
@@ -310,6 +313,26 @@ def delete_job():
         db.session.commit()
         return render_template('delete_job.html')
 
+
+def link_finder(job_id):
+    request = requests.get(f'https://serpapi.com/search.json?\
+ engine=google_jobs_listing&q={job_id}&api_key={API_KEYS[key_index]}')
+    salary_data = request.json()["salaries"]
+    link = salary_data[0]['link']
+    source = salary_data[0]['source']
+    return f"{source} : {link}"
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
     db.create_all()
+
+
+            #  list_data.append(link_data)
+        #  for i in range(len(list_data)):
+        #      print(f'job {i + 1}:')
+        #      for j in range(len(list_data[i])):
+        #          for key, value in list_data[i][j].items():
+        #              if key == 'link' and j <= 3:
+                         
