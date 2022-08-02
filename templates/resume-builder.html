@@ -1,17 +1,28 @@
 {% extends "layout.html" %}
 {% block content %}
+    <style>
+        h2{
+            text-align: center;
+        }
+        h3{
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        label{
+            display: block;
+        }
+        label input{
+            margin-top: 0.5rem;
+        }
+    </style>
     <div>
-        <br>
-
-        <h3 style = "text-align: center;"> Build a Resume </h3>
-
+        <h2>Build a Resume</h2>
+        <h3>Note: Fields with (*) are required.</h3>
         <!-- <embed type="text/html" src="{{ url_for('static', filename='templates/resume-look.html') }}" width="500" height="200"> -->
             <form action="{{ url_for('resume_builder') }}" method="POST">
 
-            <!-- <! <div class="form-group">
-                <label for="exampleFormControlInput1">Name: </label>
-                <input type="text" name = "name" class="form-control" id="exampleFormControlInput1" placeholder="">
-          -->
+        <!-- Tabs -->
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-item nav-link active" id="nav-personal-info-tab" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="true">Personal</a>
@@ -20,163 +31,157 @@
                 <a class="nav-item nav-link" id="nav-skills-interests-tab" data-toggle="tab" href="#nav-skills-interests" role="tab" aria-controls="nav-skills-interests" aria-selected="false">Skills</a>
             </div>
         </nav>
+        
+        <!-- Form sections -->
         <div class="tab-content" id="nav-tabContent">
+            <!-- PERSONAL INFO -->
             <div class="tab-pane fade show active" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
+                <!-- Name -->
                 <div class="form-group">
-            {{ form.name.label(class="form-control-label") }}
-            {% if form.name.errors %}
-            {{ form.name(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.name.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <!-- Title -->
+                <div class="form-group">
+                    {{ form.title.label(class="form-control-label") }}
+                        {% if form.title.errors %}
+                            {{ form.title(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.title.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.title(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    {{ form.email.label(class="form-control-label") }}
+                    {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <!-- Phone number -->
+                <div class="form-group">
+                    {{ form.phone_number.label(class="form-control-label") }}
+                    {% if form.phone_number.errors %}
+                        {{ form.phone_number(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone_number.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                            <span>Hint: dashes are required</span>
+                        </div>
+                    {% else %}
+                        {{ form.phone_number(class="form-control form-control-lg", placeholder="Ex: 555-555-5555") }}
+                    {% endif %}
+                </div>
             </div>
-        {% else %}
-            {{ form.name(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.title.label(class="form-control-label") }}
-            {% if form.title.errors %}
-            {{ form.title(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.title.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.title(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.email.label(class="form-control-label") }}
-            {% if form.email.errors %}
-            {{ form.email(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.email.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.email(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.phone_number.label(class="form-control-label") }}
-            {% if form.phone_number.errors %}
-            {{ form.phone_number(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.phone_number.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-                <span>Hint: dashes are required</span>
-            </div>
-        {% else %}
-            {{ form.phone_number(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            </div>
+
+            <!-- EDUCATION -->
             <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+                <!-- Univeristy -->
                 <div class="form-group">
-            {{ form.education.label(class="form-control-label") }}
-            {% if form.education.errors %}
-            {{ form.education(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.education.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
+                    {{ form.university.label(class="form-control-label") }}
+                    {% if form.university.errors %}
+                        {{ form.university(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.university.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.university(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <!-- Major -->
+                <div class="form-group">
+                    {{ form.major.label(class="form-control-label") }}
+                    {% if form.major.errors %}
+                        {{ form.major(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.major.errors %}
+                                <span>{{error}}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.major(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    <label>GPA:
+                        <input type="text" name="gpa" class="form-control">
+                    </label>
+                </div>
             </div>
-        {% else %}
-            {{ form.education(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.education_address.label(class="form-control-label") }}
-            {% if form.education_address.errors %}
-            {{ form.education_address(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.education_address.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.education_address(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-            {{ form.major.label(class="form-control-label") }}
-            {% if form.major.errors %}
-            {{ form.major(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.major.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.major(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">GPA: </label>
-                <input type="text" name = "gpa" class="form-control" id="exampleFormControlInput1" placeholder="">
-            </div>
-            </div>
+
+            <!-- EXPERIENCE -->
             <div class="tab-pane fade" id="nav-experience" role="tabpanel" aria-labelledby="nav-experience-tab">
-                <div class="form-group">
-                <label for="exampleFormControlInput1">Company Name: </label>
-                <input type="text" name = "company1" class="form-control" id="exampleFormControlInput1" placeholder="Apple Inc">
+                <div id="experience-container">
+                <div class="experience 1">
+                    <div class="form-group">
+                        <label>Company Name:
+                            <input type="text" name="company 1" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Position:
+                            <input type="text" name="position 1" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Start Date:
+                            <input type="text" name="start_date 1" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>End Date:
+                            <input type="text" name ="end_date 1" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Position Description:
+                            <textarea class="form-control form-control-lg" name="position_description 1" rows="3"></textarea>
+                        </label>
+                    </div>
+                </div>
+                </div>
+                <button class="btn btn-outline-info" onclick="addExperience()">Add Experience</button>
             </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Position: </label>
-                <input type="text" name = "position1" class="form-control" id="exampleFormControlInput1" placeholder="Frontend Engineer">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">Start Date: </label>
-                <input type="text" name = "start_date1" class="form-control" id="exampleFormControlInput1" placeholder="June 2020">
-            </div>
-             <div class="form-group">
-                <label for="exampleFormControlInput1">End Date: </label>
-                <input type="text" name = "end_date1" class="form-control" id="exampleFormControlInput1" placeholder="present">
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlTextarea1">Position Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" name = "position_description1" rows="3"></textarea>
-            </div>
-            </div>
+
+            <!-- SKILLS & INTERESTS -->
             <div class="tab-pane fade" id="nav-skills-interests" role="tabpanel" aria-labelledby="nav-skills-interests-tab">
                 <div class="form-group">
-            {{ form.skill_title1.label(class="form-control-label") }}
-            {% if form.skill_title1.errors %}
-            {{ form.skill_title1(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.skill_title1.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
-            </div>
-        {% else %}
-            {{ form.skill_title1(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
+                    <label>Languages:
+                        <input type="text" name="languages" class="form-control form-control-lg">
+                    </label>
+                </div>
             <div class="form-group">
-            {{ form.skill_description1.label(class="form-control-label") }}
-            {% if form.skill_description1.errors %}
-            {{ form.skill_description1(class="form-control form-control-lg is-invalid") }}
-            <div class="invalid-feedback">
-                {% for error in form.skill_description1.errors %}
-                    <span>{{error}}</span>
-                {% endfor %}
+                <label>Skills:
+                    <input type="text" name="Skills" class="form-control form-control-lg">
+                </label>
             </div>
-        {% else %}
-            {{ form.skill_description1(class="form-control form-control-lg") }}
-        {% endif %}
-            </div>
-            </div>
-        </div>
             <div class="form-group">
              {{ form.submit(class="btn btn-outline-info") }}
             </div>
-            <input class="btn btn-outline-info" type="submit" value="Submit"><br>
-            </form>
+        </form>
 
     </div>
 

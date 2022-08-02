@@ -101,7 +101,11 @@ def resume_builder():
     form = ResumeForm()
     if request.method == 'POST':
         print('POST is working')
-        return render_template('resume_display.html', form = form)
+        # print(form.university.data)
+        print(request.form['name'])
+        print(request.form['university'])
+        print(request.form['gpa'])
+        return render_template('resume_display.html', form = form) # request.json().
     return render_template('resume-builder.html', form = form)
 
 # def fill_out_form():
