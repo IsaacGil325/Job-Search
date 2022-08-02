@@ -40,10 +40,10 @@
         
         <!-- CSS sheets we created -->
         <style>
-            #navigation li a{
-                font-family: 'Brush Script MT', cursive;
+            navigation li a{
+                /*font-family: 'Brush Script MT', cursive;    change the font*/ 
                 font-weight: 100;
-                font-size: 24px;
+                font-size: 20px; /* <li><a href="{{ url_for('job_search') }}"style="font-size:15px; font-family:cursive">Search Jobs</a></li> let the bar fit into one line*/
             }
         </style>
         {% block stylesheets %}{% endblock %}
@@ -80,12 +80,11 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block" role="navigation">
                                         <ul id="navigation">
-                                            <li><a href="{{ url_for('homepage') }}">Home</a></li>
-                                            <li><a href="{{ url_for('job_search') }}">Search Jobs</a></li>
-                                            <li><a href="{{ url_for('saved_jobs_page') }}">Saved Jobs</a></li>
-                                            <li><a href="{{ url_for('resume_builder') }}">Resume Builder</a></li>
-                                            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
-                                            <li><a href="{{ url_for('about_page') }}">About</a></li>
+                                            <li><a href="{{ url_for('homepage') }}" style="font-size:16px">Home</a></li>
+                                            <li><a href="{{ url_for('saved_jobs_page') }}" style="font-size:16px">Saved Jobs</a></li>
+                                            <li><a href="{{ url_for('resume_builder') }}" style="font-size:16px">CV Builder</a></li>
+                                            <li><a href="{{ url_for('contact_page') }}" style="font-size:16px">Contact</a></li>
+                                            <li><a href="{{ url_for('about_page') }}" style="font-size:16px">About</a></li>
                                         </ul>
                                     </nav>
                                 </div>          
