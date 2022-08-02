@@ -89,7 +89,7 @@ def save_job():
                             company_name=company_name,
                             location=job_location,
                             description=job_description,
-                            link = source_link)
+                            job_links = source_link)
         print(savedjob)
         db.session.add(savedjob)
         db.session.commit()
@@ -261,9 +261,6 @@ def about_page():
 def saved_jobs_page():
     engine = db.create_engine('sqlite:///jobify.db', {})
     query = engine.execute(f"SELECT * FROM saved_job WHERE username = '{session['username']}';").fetchall()
-    query2 = engine.execute(f"SELECT job_id FROM saved_job WHERE username = '{session['username']}';").fetchall()
-    links = print_links(query2)
-    print(links)
     return render_template('saved-jobs.html', jobs = query)
 
 @app.route("/contact")
@@ -315,12 +312,23 @@ def delete_job():
 
 
 def link_finder(job_id):
-    request = requests.get(f'https://serpapi.com/search.json?\
- engine=google_jobs_listing&q={job_id}&api_key={API_KEYS[key_index]}')
-    salary_data = request.json()["salaries"]
-    link = salary_data[0]['link']
-    source = salary_data[0]['source']
-    return f"{source} : {link}"
+    print(job_id)
+    request = requests.get(f'https://serpapi.com/search.json?engine=google_jobs_listing&q={job_id}&api_key={API_KEYS[key_index]}')
+    print(request.json())
+    try:
+        apply_link = request.json()["apply_options"]
+        title = apply_link[0]['title']
+        link = apply_link[0]['link']
+        return f"{title} : {link}"
+    except KeyError:
+        try:
+            salary_data = request.json()["salaries"]
+            link = salary_data[0]['link']
+            source = salary_data[0]['source']
+            return f"{source} : {link}"
+        except KeyError:
+            return None
+    
 
 
 

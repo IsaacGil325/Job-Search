@@ -30,5 +30,5 @@ class SavedJob(db.Model):
     description=db.Column(db.String())
     job_links = db.Column(db.String())
     def __repr__(self):
-        return f"Job:('{self.job_title}: {self.company_name}')"
+        return f"Job:('{self.job_title}: {self.company_name}: {self.job_links}')"
 # end Models
