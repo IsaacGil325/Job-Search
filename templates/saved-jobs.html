@@ -14,28 +14,22 @@
     </tr>
   </thead>
   <tbody>
-    {% if jobs %}
-      {%for job in jobs %}
-        <tr id={{ job['job_id'] }}>
-          <th scope="row">{{loop.index}}</th>
-          <td id="job_title_{{job['job_id']}}">{{job[2]}}</td>
-          <td id="company_name_{{job['job_id']}}">{{job[3]}}</td>
-          <td id="job_location_{{job['job_id']}}">{{job[4]}}</td>
-          <td id="job_description_{{job['job_id']}}">{{job[5]|truncate(500)}}<!-- <span onclick="viewFullDescription('{{ job['description'] }}')">(view full description)</span>--></td>
-          {% if job[7] is not none %}
-            {% set title, link = job[7].split(' : ') %}
-          <td id="source_link_{{job['job_id']}}"><a style="color:blue" href='{{link}}'>{{title}}</a></td>
-          {% else %}
+    {%for job in jobs %}
+      <tr id={{ job['job_id'] }}>
+        <th scope="row">{{loop.index}}</th>
+        <td id="job_title_{{job['job_id']}}">{{job[2]}}</td>
+        <td id="company_name_{{job['job_id']}}">{{job[3]}}</td>
+        <td id="job_location_{{job['job_id']}}">{{job[4]}}</td>
+        <td id="job_description_{{job['job_id']}}">{{job[5]|truncate(500)}}<!-- <span onclick="viewFullDescription('{{ job['description'] }}')">(view full description)</span>--></td>
+        {% if job[7] is not none %}
+          {% set title, link = job[7].split(' : ') %}
+          <td id="source_link_{{job['job_id']}}"><a target="blank" style="color:blue" href='{{link}}'>{{title}}</a></td>
+        {% else %}
           <td id="source_link_{{job['job_id']}}">N/A</td>
-          {% endif %}
-          <td><input type="checkbox" id="job_save_{{job['job_id']}}" value="job" onclick = "getDelete('{{job['job_id']}}');" ></td>
-        </tr>
-    {%else%}
-        <h5> No jobs to display</h5>
-    {%endfor%}
-    {% endif %}
-
-    
+        {% endif %}
+        <td><input type="checkbox" id="job_save_{{job['job_id']}}" value="job" onclick = "getDelete('{{job['job_id']}}');" ></td>
+      </tr>
+    {%endfor%} 
   </tbody>
 </table>
 
