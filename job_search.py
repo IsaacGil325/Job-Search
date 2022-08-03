@@ -116,7 +116,7 @@ def resume_builder():
         #     print(item)
         data = {k:v for k,v in request.form.items()}
         num_experience = exp_counter(data)
-        return render_template('resume_display.html', data = data, num_exp = num_experience) # request.json().
+        return render_template('resume_display.html', data = data, num_exp = num_experience)
     return render_template('resume-builder.html', form = form)
 
 # def fill_out_form():

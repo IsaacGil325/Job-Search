@@ -1,159 +1,63 @@
-{% extends "styling-layout.html" %}
-{% block content %}
-	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='resume.css') }}" media="all" />
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <title>Resume - {{ data['name'] }}</title>
+  <style>
+	  header{
+		  text-align: center;
+	  }
+	  h1{
+		  font-style: bold;
+	  }
+  </style>
+</head>
 <body>
-	
+	<header role="banner">
+		<h1>{{ data['name'].upper() }}</h1>
+		<p>{{ data['title'] }}</p>
+		<p>{{ data['email'] }} &bull; {{ data['phone_number'] }}</p>
+	</header>
+	<main role="main">
+		<h2>EDUCATION</h2>
+		<h3>{{ data['university'].upper() }}</h3>
+		<p>Graduation year</p>
+		<p>Degree in {{ data['major'].title() }}</p>
+		{% if data['gpa'] %}
+			<p>GPA: {{ data['gpa'] }}</p>
+		{% endif %}
 
-<div id="doc2" class="yui-t7">
-	<div id="inner">
-	
-		<div id="hd">
-			<div class="yui-gc">
-				<div class="yui-u first">
-					<h1>{{ form.name.data }}</h1>
-					<h2>{{ form.university.data }}</h2>
-					<h2>{{title}}</h2>
-				</div>
-
-				<div class="yui-u">
-					<div class="contact-info">
-						<!-- <h3><a id="pdf" href="#">Download PDF</a></h3> -->
-						<h3><a href="mailto:name@yourdomain.com">{{email}}</a></h3>
-						<h3>{{phone_number}}</h3>
-					</div><!--// .contact-info -->
-				</div>
-			</div><!--// .yui-gc -->
-		</div><!--// hd -->
-
-		<div id="bd">
-			<div id="yui-main">
-				<div class="yui-b">
-
-					<div class="yui-gf">
-						<div class="yui-u first">
-							<h2>Education</h2>
-						</div>
-						<div class="yui-u">
-							<h2>{{university}}</h2>
-							<h3>{{major}} &mdash; {% if gpa %}<strong>{{gpa}}GPA</strong>{% endif%}</h3>
-						</div>
-					</div>
-
-					<div class="yui-gf">
-						<div class="yui-u first">
-							<h2>Skills</h2>
-						</div>
-						<div class="yui-u">
-
-								<div class="talent">
-									<h2>{{skill_title1}}</h2>
-									<p>{{skill_description1}}</p>
-								</div>
-
-								<div class="talent">
-									<h2>{{skill_title2}}</h2>
-									<p>{{skill_description2}}</p>
-								</div>
-
-								<div class="talent">
-									<h2>{{skill_title3}}</h2>
-									<p>{{skill_description3}}</p>
-								</div>
-						</div>
-					</div><!--// .yui-gf -->
-
-					<div class="yui-gf">
-						<div class="yui-u first">
-							<h2>Technical</h2>
-						</div>
-						<div class="yui-u">
-							<ul class="talent">
-								<li>{{relevant_skill1}}</li>
-								<li>{{relevant_skill2}}</li>
-								<li class="last">{{relevant_skill3}}</li>
-							</ul>
-
-							<ul class="talent">
-								<li>{{relevant_skill4}}</li>
-								<li>{{relevant_skill5}}</li>
-								<li class="last">{{relevant_skill6}}</li>
-							</ul>
-
-							<ul class="talent">
-								<li>{{relevant_skill7}}</li>
-								<li>{{relevant_skill8}}</li>
-								<li class="last">{{relevant_skill9}}</li>
-							</ul>
-						</div>
-					</div><!--// .yui-gf-->
-
-					<div class="yui-gf">
-	
-						<div class="yui-u first">
-							<h2>Experience</h2>
-						</div><!--// .yui-u -->
-
-						<div class="yui-u">
-
-							<div class="job">
-								<h2>{{company1}}</h2>
-								<h3>{{position1}}</h3>
-								<h4>{{start_date1}}-{{end_date1}}</h4>
-								<p>{{position_description1}} </p>
-							</div>
-
-							<div class="job">
-								<h2>{{company2}}</h2>
-								<h3>{{position2}}</h3>
-								<h4>{{start_date2}}-{{end_date2}}</h4>
-								<p>{{position_description2}} </p>
-							</div>
-
-							<div class="job">
-								<h2>{{company3}}</h2>
-								<h3>{{position3}}</h3>
-								<h4>{{start_date3}}-{{end_date3}}</h4>
-								<p>{{position_description3}}</p>
-							</div>
-
-
-							<div class="job last">
-								<h2>{{company4}}</h2>
-								<h3>{{position4}}</h3>
-								<h4>{{start_date4}}-{{end_date4}}</h4>
-								<p>{{position_description4}}</p>
-							</div>
-
-						</div><!--// .yui-u -->
-					</div><!--// .yui-gf -->
-
-
-					<!-- <div class="yui-gf last">
-						<div class="yui-u first">
-							<h2>Education</h2>
-						</div>
-						<div class="yui-u">
-							<h2>{{education}} - {{education_address}}</h2>
-							<h3>{{major}} &mdash; <strong>{{gpa}}GPA</strong> </h3>
-						</div>
-					</div>// .yui-gf -->
-
-
-				</div><!--// .yui-b -->
-			</div><!--// yui-main -->
-		</div><!--// bd -->
-
-		<div id="ft">
-			<p>{{name}} &mdash; <a href="mailto:name@yourdomain.com">{{email}}</a> &mdash; {{phone_number}}</p>
-		</div><!--// footer -->
-
-	</div><!-- // inner -->
-
-
-</div><!--// doc -->
-
-
-</body>
+		<h2>EXPERIENCE</h2>
+		{% for i in range(num_exp) %}
+			<h3>{{ data['company ' + (i+1)|string].upper() }}</h3>
+			<h4>{{ data['position ' + (i+1)|string].title() }}</h4>
+			<p>Location</p>
+			<p>{{ data['start_date ' + (i+1)|string] }} &#8211; {{ data['end_date ' + (i+1)|string] }}</p>
+			<p>{{ data['position_description ' + (i+1)|string] }}</p>
+		{% endfor %}
+	</main>
+<body>
 </html>
-{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
