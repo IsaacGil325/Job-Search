@@ -14,6 +14,21 @@ function addExperience(){
         theInput.name = theNewName;
     }
 
-    experiences.appendChild(document.createElement("br"));
     experiences.appendChild(newExperience);
+    lenExp = experiences.childElementCount;
+    if(lenExp > 1) {
+        let delButton = document.getElementById("delete-button");
+        delButton.removeAttribute("disabled");
+    }
+}
+
+function deleteExperience(){
+    let experiences = document.getElementById("experience-container");
+    let lenExp = experiences.childElementCount;
+    let latestExperience = experiences.children[lenExp - 1];
+    experiences.removeChild(latestExperience);
+    if(lenExp - 1 == 1) {
+        let delButton = document.getElementById("delete-button");
+        delButton.setAttribute("disabled", "");
+    }
 }
