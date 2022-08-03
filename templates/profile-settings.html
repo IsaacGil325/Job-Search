@@ -1,5 +1,19 @@
 {% extends "layout.html" %}
+{% block stylesheets %} 
+<style>
+    .mt-3 .form-group div{
+        display : flex;
 
+    }
+    .mt-3 .form-group div input{
+        flex-grow : 3;
+    }
+    .mt-3 .form-group div button{
+        border-radius : 20px;
+        flex-grow : 1;
+    }
+</style>
+{% endblock %}
 {% block content %}
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
@@ -12,21 +26,19 @@
                     <h4 class="text-center" style="font-family:cursive">Profile Settings</h4>
             </div>
             <div class="row mt-2">
-                 <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                 <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                 <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="David" value=""></div>
+                 <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="Nunez"></div>
             </div>
             <div class="row mt-3">
                 <h5 class="text-center">User Info</h5>
                 <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="Enter phone number" value=""></div>
                 <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Enter email" value=""></div>
                 <div class="form-group">
-                    <label> Description
-                        <textarea class="form-control form-control-lg" name="Description"></textarea>
-                    </label>
+                    <label class="labels">Fields of Interest</label><div><input class="form-control" name="fields of interest"><button class="btn btn-sm btn-secondary">Save Field</button></div>
                 </div>
             </div>
         
-            <div class="mt-5 text-center" ><button class="btn btn-primary profile-button" style="border-radius : 20px" type="button">Save Profile</button></div>
+            <div class="mt-5 text-center" ><button class="btn btn-primary profile-button btn-lg" style="border-radius : 20px" type="button">Save Profile</button></div>
         </div>
     </div>
     
