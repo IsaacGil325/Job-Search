@@ -20,168 +20,205 @@
         <h2>Build a Resume</h2>
         <h3>Note: Fields with (*) are required.</h3>
         <!-- <embed type="text/html" src="{{ url_for('static', filename='templates/resume-look.html') }}" width="500" height="200"> -->
-            <form action="{{ url_for('resume_builder') }}" method="POST">
+        <form action="{{ url_for('resume_builder') }}" method="POST">
 
         <!-- Tabs -->
-        <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                <a class="nav-item nav-link active" id="nav-personal-info-tab" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="true">Personal</a>
-                <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education</a>
-                <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab" href="#nav-experience" role="tab" aria-controls="nav-experience" aria-selected="false">Experience</a>
-                <a class="nav-item nav-link" id="nav-skills-interests-tab" data-toggle="tab" href="#nav-skills-interests" role="tab" aria-controls="nav-skills-interests" aria-selected="false">Skills</a>
-            </div>
-        </nav>
-        
-        <!-- Form sections -->
-        <div class="tab-content" id="nav-tabContent">
-            <!-- PERSONAL INFO -->
-            <div class="tab-pane fade show active" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
-                <!-- Name -->
-                <div class="form-group">
-                    {{ form.name.label(class="form-control-label") }}
-                    {% if form.name.errors %}
-                        {{ form.name(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.name.errors %}
-                                <span>{{error}}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.name(class="form-control form-control-lg") }}
-                    {% endif %}
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-personal-info-tab" data-toggle="tab" href="#nav-personal-info" role="tab" aria-controls="nav-personal-info" aria-selected="true">Personal</a>
+                    <a class="nav-item nav-link" id="nav-education-tab" data-toggle="tab" href="#nav-education" role="tab" aria-controls="nav-education" aria-selected="false">Education</a>
+                    <a class="nav-item nav-link" id="nav-experience-tab" data-toggle="tab" href="#nav-experience" role="tab" aria-controls="nav-experience" aria-selected="false">Experience</a>
+                    <a class="nav-item nav-link" id="nav-skills-interests-tab" data-toggle="tab" href="#nav-skills-interests" role="tab" aria-controls="nav-skills-interests" aria-selected="false">Skills</a>
                 </div>
-                <!-- Title -->
-                <div class="form-group">
-                    {{ form.title.label(class="form-control-label") }}
-                        {% if form.title.errors %}
-                            {{ form.title(class="form-control form-control-lg is-invalid") }}
+            </nav>
+            
+            <!-- Form sections -->
+            <div class="tab-content" id="nav-tabContent">
+                <!-- PERSONAL INFO -->
+                <div class="tab-pane fade show active" id="nav-personal-info" role="tabpanel" aria-labelledby="nav-personal-info-tab">
+                    <!-- Name -->
+                    <div class="form-group">
+                        {{ form.name.label(class="form-control-label") }}
+                        {% if form.name.errors %}
+                            {{ form.name(class="form-control form-control-lg is-invalid") }}
                             <div class="invalid-feedback">
-                                {% for error in form.title.errors %}
+                                {% for error in form.name.errors %}
                                     <span>{{error}}</span>
                                 {% endfor %}
                             </div>
                         {% else %}
-                            {{ form.title(class="form-control form-control-lg") }}
-                    {% endif %}
+                            {{ form.name(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <!-- Title -->
+                    <div class="form-group">
+                        {{ form.title.label(class="form-control-label") }}
+                            {% if form.title.errors %}
+                                {{ form.title(class="form-control form-control-lg is-invalid") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.title.errors %}
+                                        <span>{{error}}</span>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.title(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <!-- Email -->
+                    <div class="form-group">
+                        {{ form.email.label(class="form-control-label") }}
+                        {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.email(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <!-- Phone number -->
+                    <div class="form-group">
+                        {{ form.phone_number.label(class="form-control-label") }}
+                        {% if form.phone_number.errors %}
+                            {{ form.phone_number(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.phone_number.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                                <span>Hint: dashes are required</span>
+                            </div>
+                        {% else %}
+                            {{ form.phone_number(class="form-control form-control-lg", placeholder="Ex: 555-555-5555") }}
+                        {% endif %}
+                    </div>
                 </div>
-                <!-- Email -->
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{error}}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <!-- Phone number -->
-                <div class="form-group">
-                    {{ form.phone_number.label(class="form-control-label") }}
-                    {% if form.phone_number.errors %}
-                        {{ form.phone_number(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.phone_number.errors %}
-                                <span>{{error}}</span>
-                            {% endfor %}
-                            <span>Hint: dashes are required</span>
-                        </div>
-                    {% else %}
-                        {{ form.phone_number(class="form-control form-control-lg", placeholder="Ex: 555-555-5555") }}
-                    {% endif %}
-                </div>
-            </div>
 
-            <!-- EDUCATION -->
-            <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
-                <!-- Univeristy -->
-                <div class="form-group">
-                    {{ form.university.label(class="form-control-label") }}
-                    {% if form.university.errors %}
-                        {{ form.university(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.university.errors %}
-                                <span>{{error}}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.university(class="form-control form-control-lg") }}
-                    {% endif %}
+                <!-- EDUCATION -->
+                <div class="tab-pane fade" id="nav-education" role="tabpanel" aria-labelledby="nav-education-tab">
+                    <!-- Univeristy -->
+                    <div class="form-group">
+                        {{ form.university.label(class="form-control-label") }}
+                        {% if form.university.errors %}
+                            {{ form.university(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.university.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.university(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <!-- Major -->
+                    <div class="form-group">
+                        {{ form.major.label(class="form-control-label") }}
+                        {% if form.major.errors %}
+                            {{ form.major(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.major.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.major(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label>GPA:
+                            <input type="text" name="gpa" class="form-control">
+                        </label>
+                    </div>
                 </div>
-                <!-- Major -->
-                <div class="form-group">
-                    {{ form.major.label(class="form-control-label") }}
-                    {% if form.major.errors %}
-                        {{ form.major(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.major.errors %}
-                                <span>{{error}}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.major(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    <label>GPA:
-                        <input type="text" name="gpa" class="form-control">
-                    </label>
-                </div>
-            </div>
 
-            <!-- EXPERIENCE -->
-            <div class="tab-pane fade" id="nav-experience" role="tabpanel" aria-labelledby="nav-experience-tab">
-                <div id="experience-container">
-                <div class="experience 1">
-                    <div class="form-group">
-                        <label>Company Name:
-                            <input type="text" name="company 1" class="form-control form-control-lg">
-                        </label>
+                <!-- EXPERIENCE -->
+                <div class="tab-pane fade" id="nav-experience" role="tabpanel" aria-labelledby="nav-experience-tab">
+                    <div id="experience-container">
+                    <div class="experience 1">
+                        <div class="form-group">
+                            <label>Company Name*
+                                <input type="text" name="company 1" required class="form-control form-control-lg">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Position*
+                                <input type="text" name="position 1" required class="form-control form-control-lg">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Start Date*
+                                <input type="text" name="start_date 1" required class="form-control form-control-lg">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>End Date*
+                                <input type="text" name ="end_date 1" class="form-control form-control-lg">
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label>Position Description*
+                                <textarea class="form-control form-control-lg" required name="position_description 1" rows="3"></textarea>
+                            </label>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label>Position:
-                            <input type="text" name="position 1" class="form-control form-control-lg">
-                        </label>
                     </div>
-                    <div class="form-group">
-                        <label>Start Date:
-                            <input type="text" name="start_date 1" class="form-control form-control-lg">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>End Date:
-                            <input type="text" name ="end_date 1" class="form-control form-control-lg">
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label>Position Description:
-                            <textarea class="form-control form-control-lg" name="position_description 1" rows="3"></textarea>
-                        </label>
-                    </div>
+                    <button class="btn btn-outline-info" onclick="addExperience()">Add Experience</button>
+                    <button id="delete-button" class="btn btn-outline-info" disabled onclick="deleteExperience()">Delete Experience</button>
                 </div>
-                </div>
-                <button class="btn btn-outline-info" onclick="addExperience()">Add Experience</button>
-                <button id="delete-button" class="btn btn-outline-info" disabled onclick="deleteExperience()">Delete Experience</button>
-            </div>
 
-            <!-- SKILLS & INTERESTS -->
-            <div class="tab-pane fade" id="nav-skills-interests" role="tabpanel" aria-labelledby="nav-skills-interests-tab">
-                <div class="form-group">
-                    <label>Languages:
-                        <input type="text" name="languages" class="form-control form-control-lg">
-                    </label>
+                <!-- SKILLS & INTERESTS -->
+                <div class="tab-pane fade" id="nav-skills-interests" role="tabpanel" aria-labelledby="nav-skills-interests-tab">
+                    <h3>Enter comma separated</h3>
+                    <div class="form-group">
+                        <label>Languages:
+                            <input type="text" name="languages" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Skills:
+                            <input type="text" name="skills" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Affiliations:
+                            <input type="text" name="affiliations" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                      <div class="form-group">
+                        <label>Certifications:
+                            <input type="text" name="certifications" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Publications:
+                            <input type="text" name="publications" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Awards:
+                            <input type="text" name="awards" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                      <div class="form-group">
+                        <label>Activities:
+                            <input type="text" name="activities" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Volunteer:
+                            <input type="text" name="volunteer" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Interests:
+                            <input type="text" name="interests" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                    {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
                 </div>
-            <div class="form-group">
-                <label>Skills:
-                    <input type="text" name="Skills" class="form-control form-control-lg">
-                </label>
-            </div>
-            <div class="form-group">
-             {{ form.submit(class="btn btn-outline-info") }}
-            </div>
         </form>
 
     </div>
