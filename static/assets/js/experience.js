@@ -1,9 +1,13 @@
-function addExperience(){
+function addExperience(event){
+    event.preventDefault();
     let experiences = document.getElementById("experience-container");
     let lenExp = experiences.childElementCount;
     
     let latestExperience = experiences.children[lenExp - 1];
     let newExperience = latestExperience.cloneNode(true);
+    for(let i = 0; i < newExperience.childElementCount; i++) {
+        newExperience.children[i].children[0].children[0].value = '';
+    }
     newExperience.className = `experience ${lenExp + 1}`;
 
     for(let i=0; i<newExperience.childElementCount; i++){
@@ -22,7 +26,8 @@ function addExperience(){
     }
 }
 
-function deleteExperience(){
+function deleteExperience(event){
+    event.preventDefault();
     let experiences = document.getElementById("experience-container");
     let lenExp = experiences.childElementCount;
     let latestExperience = experiences.children[lenExp - 1];

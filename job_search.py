@@ -4,7 +4,7 @@ import pandas as pd
 import random
 import requests
 import json
-import pprint
+from pprint import pprint
 import pdb
 import sqlite3
 from functools import wraps
@@ -71,6 +71,18 @@ def log_the_user_in(username):
     session['username'] = username
     return redirect(url_for('job_search'))
 
+
+def exp_counter(form_data):
+    i = 1
+    while True:
+        try:
+            temp = form_data[f"company {i + 1}"]
+        except KeyError:
+            break
+        else:
+            i += 1
+    return i
+
 @app.route("/saved_jobs", methods=('GET', 'POST'))
 def save_job():
     #new comment test
@@ -100,12 +112,11 @@ def save_job():
 def resume_builder():
     form = ResumeForm()
     if request.method == 'POST':
-        print('POST is working')
-        # print(form.university.data)
-        print(request.form['name'])
-        print(request.form['university'])
-        print(request.form['gpa'])
-        return render_template('resume_display.html', form = form) # request.json().
+        # for item in request.form.items():
+        #     print(item)
+        data = {k:v for k,v in request.form.items()}
+        num_experience = exp_counter(data)
+        return render_template('resume_display.html', data = data, num_exp = num_experience) # request.json().
     return render_template('resume-builder.html', form = form)
 
 # def fill_out_form():
