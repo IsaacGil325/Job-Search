@@ -223,6 +223,10 @@ def resume_display():
 def homepage():
     return render_template('home.html')
 
+@app.route("/profile-settings")
+def profile_settings():
+    return render_template("profile-settings.html")
+    
 @app.route("/job_search", methods=('GET', 'POST'))
 @login_required
 def job_search():

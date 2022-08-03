@@ -8,6 +8,7 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+        <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
 
 		<!-- CSS here -->
             <!-- <link rel="stylesheet" href="assets/css/bootstrap.min.css">
@@ -35,11 +36,18 @@
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='slick.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='nice-select.css') }}">
             <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-            <!-- <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
-	        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='resume.css') }}" media="all" /> -->
-</script>
 
-   </head>
+        
+        <!-- CSS sheets we created -->
+        <style>
+            navigation li a{
+                /*font-family: 'Brush Script MT', cursive;    change the font*/ 
+                font-weight: 100;
+                font-size: 20px; /*let the bar fit into one line*/
+            }
+        </style>
+        {% block stylesheets %}{% endblock %}
+    </head>
 
    <body>
     <!-- Preloader Start -->
@@ -62,9 +70,9 @@
                     <div class="row align-items-center">
                         <div class="col-lg-3 col-md-2">
                             <!-- Logo -->
-                            <div class="logo">
+                            <h1 class="logo">
                                 <a href="/"><img src="{{ url_for('static', filename='assets/img/logo/jobify2.png') }}" alt=""></a>
-                            </div>  
+                            </h1>
                         </div>
                         <div class="col-lg-9 col-md-9">
                             <div class="menu-wrapper">
@@ -72,23 +80,23 @@
                                 <div class="main-menu">
                                     <nav class="d-none d-lg-block" role="navigation">
                                         <ul id="navigation">
-                                            <li><a href="{{ url_for('homepage') }}">Home</a></li>
-                                            <li><a href="{{ url_for('job_search') }}">Search Jobs</a></li>
-                                            <li><a href="{{ url_for('saved_jobs_page') }}">Saved Jobs</a></li>
-                                            <li><a href="{{ url_for('resume_builder') }}">Resume Builder</a></li>
-                                            <li><a href="{{ url_for('contact_page') }}">Contact</a></li>
-                                            <li><a href="{{ url_for('about_page') }}">About</a></li>
+                                            <li><a href="{{ url_for('homepage') }}" style="font-size:16px">Home</a></li>
+                                            <li><a href="{{ url_for('saved_jobs_page') }}" style="font-size:16px">Saved Jobs</a></li>
+                                            <li><a href="{{ url_for('resume_builder') }}" style="font-size:16px">CV Builder</a></li>
+                                            <li><a href="{{ url_for('contact_page') }}" style="font-size:16px">Contact</a></li>
+                                            <li><a href="{{ url_for('about_page') }}" style="font-size:16px">About</a></li>
                                         </ul>
                                     </nav>
                                 </div>          
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
                                     {% if session['username'] %}
-                                        <a href="{{ url_for('homepage') }}" class="btn head-btn1">{{ session['username'] }}</a>
-                                        <a href="{{ url_for('logout_user') }}" class="btn head-btn2">Logout</a>
+                                        <a href="{{ url_for('profile_settings') }}" class="btn head-btn1" style="border-radius : 20px">{{ session['username'] }}</a>
+                                        <a href="{{ url_for('logout_user') }}" class="btn head-btn2" style="border-radius : 20px">Logout</a>
+
                                     {% else %}
-                                    <a href="{{ url_for('register_form') }}" class="btn head-btn1">Register</a>
-                                    <a href="{{ url_for('login') }}" class="btn head-btn2">Login</a>
+                                    <a href="{{ url_for('register_form') }}" class="btn head-btn1" style="border-radius : 20px">Register</a>
+                                    <a href="{{ url_for('login') }}" class="btn head-btn2" style="border-radius : 20px">Login</a>
                                     {%endif%}
                                 </div>
                             </div>
@@ -112,7 +120,7 @@
             </ul>
         {% endif %}
     {% endwith %}
-    {% block content %}{% endblock content %}
+    {% block content %}{% endblock %}
     
 
   <!-- JS here -->
