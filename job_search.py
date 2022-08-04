@@ -4,7 +4,7 @@ import pandas as pd
 import random
 import requests
 import json
-import pprint
+from pprint import pprint
 import pdb
 import sqlite3
 from functools import wraps
@@ -88,6 +88,18 @@ def log_the_user_in(username):
     session['username'] = username
     return redirect(url_for('job_search'))
 
+
+def exp_counter(form_data):
+    i = 1
+    while True:
+        try:
+            temp = form_data[f"company {i + 1}"]
+        except KeyError:
+            break
+        else:
+            i += 1
+    return i
+
 @app.route("/saved_jobs", methods=('GET', 'POST'))
 def save_job():
     #new comment test
@@ -95,7 +107,7 @@ def save_job():
     #get value from checkbox?
     if request.method == 'POST':
         job_id = request.json.get('job_id')
-        print(job_id)
+        source_link = link_finder(job_id)
         job_title = request.json.get('job_title')
         company_name = request.json.get('company_name')
         job_location = request.json.get('location')
@@ -105,7 +117,8 @@ def save_job():
                             job_title=job_title,
                             company_name=company_name,
                             location=job_location,
-                            description=job_description)
+                            description=job_description,
+                            job_links = source_link)
         print(savedjob)
         db.session.add(savedjob)
         db.session.commit()
@@ -115,125 +128,135 @@ def save_job():
 @app.route("/resume-builder", methods=('GET', 'POST'))
 def resume_builder():
     form = ResumeForm()
-    return render_template('resume-builder.html', form = form)
-    #get info from form, present it as a template
-    
-@app.route("/resume_display", methods=('GET', 'POST'))
-def resume_display():
-    form = ResumeForm()
-    print(form.name.data)
     if request.method == 'POST':
-        # print(form.name.data)
-        # print(form.email.data)
-        # print(request.form.get('phone_number'))
-        # print(request.form.get('skill_title1'))
-        # print(request.form.get('skill_description1'))
-        # print(request.form.get('skill_title2'))
-        # print(request.form.get('skill_description2'))
-        # print(request.form.get('skill_title3'))
-        # print(request.form.get('skill_description3'))
-        # print(request.form.get('relevant_skill1'))
-        # print(request.form.get('company1'))
-        # print(request.form.get('major'))
-        # print(request.form.get('company1'))
+        # for item in request.form.items():
+        #     print(item)
+        data = {k:v for k,v in request.form.items()}
+        num_experience = exp_counter(data)
+        return render_template('resume_display.html', data = data, num_exp = num_experience)
+    return render_template('resume-builder.html', form = form)
 
-        # # try:
-        # name = form.name.data
-        # title = form.title.data
-        # email = form.email.data
-        # phone_number = form.phone_number.data
-        # education = form.education.data
-        # education_address = form.education_address.data
-        # major = form.major.data
-        # gpa = form.gpa.data
-        # skill_title1 = form.skill_title1.data
-        # skill_description1 = form.skill_description1.data
-        # skill_title2 = form.skill_title2.data
-        # skill_description2 = form.skill_description2.data
-        # skill_title3 = form.skill_title3.data
-        # skill_description3 = form.skill_description3.data
-        # #relevant skills
-        # relevant_skill1 =  form.relevant_skill1.data
-        # relevant_skill2 =  form.relevant_skill2.data
-        # relevant_skill3 =  form.relevant_skill3.data
-        # relevant_skill4 =  form.relevant_skill4.data
-        # relevant_skill5 =  form.relevant_skill5.data
-        # relevant_skill6 =  form.relevant_skill6.data
-        # relevant_skill7 =  form.relevant_skill7.data
-        # relevant_skill8 =  form.relevant_skill8.data
-        # relevant_skill9 =  form.relevant_skill9.data
-        # relevant_skill10 =  form.relevant_skill10.data
-        # #professional exeperince section
-        # company1 = form.company1.data
-        # position1 = form.position1.data
-        # position_description1 = form.position_description1.data
-        # start_date1 = form.start_date1.data
-        # end_date1 = form.end_date1.data
+# def fill_out_form():
+#     for each div in the request:
+#         form.skill[i] = StringField(and so on)
 
-        # company2 = form.company2.data
-        # position2 = form.position2.data
-        # position_description2 = form.position_description2.data
-        # start_date2 = form.start_date2.data
-        # end_date2 = form.end_date2.data
+# @app.route("/resume_display", methods=('GET', 'POST'))
+# def resume_display():
+#     # form = ResumeForm()
+#     print(form.name.data)
+#     flash(form.errors)
+#     if form.validate_on_submit() and request.method == 'POST':
+#         # print(form.name.data)
+#         # print(form.email.data)
+#         # print(request.form.get('phone_number'))
+#         # print(request.form.get('skill_title1'))
+#         # print(request.form.get('skill_description1'))
+#         # print(request.form.get('skill_title2'))
+#         # print(request.form.get('skill_description2'))
+#         # print(request.form.get('skill_title3'))
+#         # print(request.form.get('skill_description3'))
+#         # print(request.form.get('relevant_skill1'))
+#         # print(request.form.get('company1'))
+#         # print(request.form.get('major'))
+#         # print(request.form.get('company1'))
 
-        # company3 = form.company3.data
-        # position3 = form.position3.data
-        # position_description3 = form.position_description3.data
-        # start_date3 = form.start_date3.data
-        # end_date3 = form.end_date3.data
+#         # # try:
+#         # name = form.name.data
+#         # title = form.title.data
+#         # email = form.email.data
+#         # phone_number = form.phone_number.data
+#         # education = form.education.data
+#         # education_address = form.education_address.data
+#         # major = form.major.data
+#         # gpa = form.gpa.data
+#         # skill_title1 = form.skill_title1.data
+#         # skill_description1 = form.skill_description1.data
+#         # skill_title2 = form.skill_title2.data
+#         # skill_description2 = form.skill_description2.data
+#         # skill_title3 = form.skill_title3.data
+#         # skill_description3 = form.skill_description3.data
+#         # #relevant skills
+#         # relevant_skill1 =  form.relevant_skill1.data
+#         # relevant_skill2 =  form.relevant_skill2.data
+#         # relevant_skill3 =  form.relevant_skill3.data
+#         # relevant_skill4 =  form.relevant_skill4.data
+#         # relevant_skill5 =  form.relevant_skill5.data
+#         # relevant_skill6 =  form.relevant_skill6.data
+#         # relevant_skill7 =  form.relevant_skill7.data
+#         # relevant_skill8 =  form.relevant_skill8.data
+#         # relevant_skill9 =  form.relevant_skill9.data
+#         # relevant_skill10 =  form.relevant_skill10.data
+#         # #professional exeperince section
+#         # company1 = form.company1.data
+#         # position1 = form.position1.data
+#         # position_description1 = form.position_description1.data
+#         # start_date1 = form.start_date1.data
+#         # end_date1 = form.end_date1.data
 
-        # company4 = form.company4.data
-        # position4 = form.position4.data
-        # position_description4 = form.position_description4.data
-        # start_date4 = form.start_date4.data
-        # end_date4 = form.end_date4.data
+#         # company2 = form.company2.data
+#         # position2 = form.position2.data
+#         # position_description2 = form.position_description2.data
+#         # start_date2 = form.start_date2.data
+#         # end_date2 = form.end_date2.data
 
-        # company5 = form.company5.data
-        # position5 = form.position5.data
-        # position_description5 = form.position_description5.data
-        # start_date5 = form.start_date5.data
-        # end_date5 = form.end_date5.data
+#         # company3 = form.company3.data
+#         # position3 = form.position3.data
+#         # position_description3 = form.position_description3.data
+#         # start_date3 = form.start_date3.data
+#         # end_date3 = form.end_date3.data
 
-        # #Affiliations/Interests Tab
-        # affiliations = form.affiliations.data
-        # certifications = form.certifications.data
-        # awards = form.awards.data
-        # interests = form.interests.data
-        # publications = form.publications.data
-        # volunteer = form.volunteer.data 
-        # except:
-        #     flash('Error: Key information missing')
-        return render_template('resume_display.html', form = form)
+#         # company4 = form.company4.data
+#         # position4 = form.position4.data
+#         # position_description4 = form.position_description4.data
+#         # start_date4 = form.start_date4.data
+#         # end_date4 = form.end_date4.data
 
-        # return render_template('resume_display.html', name = name, title = title, email = email,
-            # phone_number = phone_number, education = education,
-            # major = major, gpa = gpa, education_address = education_address,
-            # skill_title1 = skill_title1, skill_description1 = skill_description1,
-            # skill_title2 = skill_title2, skill_description2 = skill_description2,
-            # skill_title3 = skill_title3, skill_description3 = skill_description3,
-            # relevant_skill1 =  relevant_skill1, relevant_skill2 =  relevant_skill2,
-            # relevant_skill3 =  relevant_skill3, relevant_skill4 =  relevant_skill4,
-            # relevant_skill5 =  relevant_skill5, relevant_skill6 =  relevant_skill6,
-            # relevant_skill7 =  relevant_skill7, relevant_skill8 =  relevant_skill8,
-            # relevant_skill9 =  relevant_skill9, relevant_skill10 =  relevant_skill10,
-            # company1 = company1, position1 = position1, 
-            # position_description1 = position_description1,
-            # start_date1 = start_date1, end_date1 = end_date1, company2 = company2, 
-            # position2 = position2,
-            # position_description2 = position_description2, start_date2 = start_date2, 
-            # end_date2 = end_date2, company3 = company3, position3 = position3,
-            # position_description3 = position_description3,
-            # start_date3 = start_date3, end_date3 = end_date3,company4 = company4, 
-            # position4 = position4, position_description4 = position_description4, 
-            # start_date4 = start_date4, end_date4 = end_date4,
-            # company5 = company5, position5 = position5,
-            # position_description5 = position_description5, start_date5 = start_date5,
-            # end_date5 = end_date5, affiliations = affiliations,
-            # certifications = certifications, awards = awards, interests = interests,
-            # publications = publications, volunteer = volunteer )
-    else:
-        flash('Error: Key information missing')
-        return render_template('resume-builder.html', form=form)
+#         # company5 = form.company5.data
+#         # position5 = form.position5.data
+#         # position_description5 = form.position_description5.data
+#         # start_date5 = form.start_date5.data
+#         # end_date5 = form.end_date5.data
+
+#         # #Affiliations/Interests Tab
+#         # affiliations = form.affiliations.data
+#         # certifications = form.certifications.data
+#         # awards = form.awards.data
+#         # interests = form.interests.data
+#         # publications = form.publications.data
+#         # volunteer = form.volunteer.data 
+#         # except:
+#         #     flash('Error: Key information missing')
+#         return render_template('resume_display.html', form = form)
+
+#         # return render_template('resume_display.html', name = name, title = title, email = email,
+#             # phone_number = phone_number, education = education,
+#             # major = major, gpa = gpa, education_address = education_address,
+#             # skill_title1 = skill_title1, skill_description1 = skill_description1,
+#             # skill_title2 = skill_title2, skill_description2 = skill_description2,
+#             # skill_title3 = skill_title3, skill_description3 = skill_description3,
+#             # relevant_skill1 =  relevant_skill1, relevant_skill2 =  relevant_skill2,
+#             # relevant_skill3 =  relevant_skill3, relevant_skill4 =  relevant_skill4,
+#             # relevant_skill5 =  relevant_skill5, relevant_skill6 =  relevant_skill6,
+#             # relevant_skill7 =  relevant_skill7, relevant_skill8 =  relevant_skill8,
+#             # relevant_skill9 =  relevant_skill9, relevant_skill10 =  relevant_skill10,
+#             # company1 = company1, position1 = position1, 
+#             # position_description1 = position_description1,
+#             # start_date1 = start_date1, end_date1 = end_date1, company2 = company2, 
+#             # position2 = position2,
+#             # position_description2 = position_description2, start_date2 = start_date2, 
+#             # end_date2 = end_date2, company3 = company3, position3 = position3,
+#             # position_description3 = position_description3,
+#             # start_date3 = start_date3, end_date3 = end_date3,company4 = company4, 
+#             # position4 = position4, position_description4 = position_description4, 
+#             # start_date4 = start_date4, end_date4 = end_date4,
+#             # company5 = company5, position5 = position5,
+#             # position_description5 = position_description5, start_date5 = start_date5,
+#             # end_date5 = end_date5, affiliations = affiliations,
+#             # certifications = certifications, awards = awards, interests = interests,
+#             # publications = publications, volunteer = volunteer )
+#     else:
+#         flash('Error: Key information missing')
+#         return render_template('resume-builder.html', form=form)
     
 
 @app.route("/")
@@ -274,7 +297,6 @@ def about_page():
 def saved_jobs_page():
     engine = db.create_engine('sqlite:///jobify.db', {})
     query = engine.execute(f"SELECT * FROM saved_job WHERE username = '{session['username']}';").fetchall()
-    print(query)
     return render_template('saved-jobs.html', jobs = query)
 
 @app.route("/contact")
@@ -325,6 +347,37 @@ def delete_job():
         db.session.commit()
         return render_template('delete_job.html')
 
+
+def link_finder(job_id):
+    print(job_id)
+    request = requests.get(f'https://serpapi.com/search.json?engine=google_jobs_listing&q={job_id}&api_key={API_KEYS[key_index]}')
+    print(request.json())
+    try:
+        apply_link = request.json()["apply_options"]
+        title = apply_link[0]['title']
+        link = apply_link[0]['link']
+        return f"{title} : {link}"
+    except KeyError:
+        try:
+            salary_data = request.json()["salaries"]
+            link = salary_data[0]['link']
+            source = salary_data[0]['source']
+            return f"{source} : {link}"
+        except KeyError:
+            return None
+    
+
+
+
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
     db.create_all()
+
+
+            #  list_data.append(link_data)
+        #  for i in range(len(list_data)):
+        #      print(f'job {i + 1}:')
+        #      for j in range(len(list_data[i])):
+        #          for key, value in list_data[i][j].items():
+        #              if key == 'link' and j <= 3:
+                         

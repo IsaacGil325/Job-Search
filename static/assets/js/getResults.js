@@ -19,7 +19,7 @@ function getResults(job_id) {
       "job_title": title,
       "company_name": c_name,
       "location": job_location,
-      "description": job_description
+      "description": job_description,
     }),
     contentType: "application/json",
     dataType: 'json'
