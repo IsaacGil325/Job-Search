@@ -3,11 +3,22 @@
   <meta charset="utf-8">
   <title>Resume - {{ data['name'] }}</title>
   <style>
+	  body{
+		  padding:1%;
+	  }
 	  header{
 		  text-align: center;
 	  }
 	  h1{
 		  font-style: bold;
+	  }
+	  hr {
+    display: block;
+    height: 1px;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-top: solid 3px black;
 	  }
   </style>
 </head>
@@ -17,23 +28,71 @@
 		<p>{{ data['title'] }}</p>
 		<p>{{ data['email'] }} &bull; {{ data['phone_number'] }}</p>
 	</header>
+	<hr>
 	<main role="main">
 		<h2>EDUCATION</h2>
 		<h3>{{ data['university'].upper() }}</h3>
-		<p>Graduation year</p>
-		<p>Degree in {{ data['major'].title() }}</p>
+		<p>{{ data['graduation_year' ]}}</p>
+		<p>{{ data['degree_type' ]}} in {{ data['major'].title() }}</p>
 		{% if data['gpa'] %}
 			<p>GPA: {{ data['gpa'] }}</p>
 		{% endif %}
-
+	<hr>
 		<h2>EXPERIENCE</h2>
 		{% for i in range(num_exp) %}
 			<h3>{{ data['company ' + (i+1)|string].upper() }}</h3>
 			<h4>{{ data['position ' + (i+1)|string].title() }}</h4>
-			<p>Location</p>
+			<p>{{ data['location ' + (i+1)|string] }}</p>
 			<p>{{ data['start_date ' + (i+1)|string] }} &#8211; {{ data['end_date ' + (i+1)|string] }}</p>
 			<p>{{ data['position_description ' + (i+1)|string] }}</p>
 		{% endfor %}
+	<hr>
+		<h2>Skills/Interests</h2>
+		<div>
+		{% if data['languages'] %}
+			<strong style="font-size:18px">Languages: </strong> {{ data['languages'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['skills'] %}
+			<strong style="font-size:18px">Skills: </strong> {{ data['skills'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['affiliations'] %}
+			<strong style="font-size:18px">Affiliations: </strong> {{ data['affiliations'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['certifications'] %}
+			<strong style="font-size:18px">Certifications: </strong> {{ data['certifications'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['publications'] %}
+			<strong style="font-size:18px">Publications: </strong> {{ data['publications'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['awards'] %}
+			<strong style="font-size:18px">Awards: </strong> {{ data['awards'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['activities'] %}
+			<strong style="font-size:18px">Activities: </strong> {{ data['activities'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['volunteer'] %}
+			<strong style="font-size:18px">Volunteer: </strong> {{ data['volunteer'] }}
+		{% endif %}
+		</div>
+		<div>
+		{% if data['interests'] %}
+			<strong style="font-size:18px">Interests: </strong> {{ data['interests'] }}
+		{% endif %}
+		</div>
 	</main>
 <body>
 </html>
