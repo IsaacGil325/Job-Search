@@ -6,7 +6,7 @@
 {% block content %}
 <h2 class="text-center mt-5 heading">Create an account to get started on your dream search</h2>
     <div class="content-section">
-      <form method="POST" action="" onkeypress="preventSubmit(event)">
+      <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
      <div class="form-group">
@@ -49,7 +49,7 @@
        {% endif %}
      </div>
      <div class="form-group"> <!-- form-group -->
-        <label for="fields-entry" class="labels">(Optional) Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control form-control-lg register-form-input" name="fields of interest"></div>
+        <label for="fields-entry" class="labels">(Optional) Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control form-control-lg register-form-input" onkeypress="createToast(event)" name="fields of interest"></div>
         <fieldset class="toast-container"></fieldset>
      </div>
      <br>
@@ -60,12 +60,12 @@
  
          </form>
      </div>
-      <script> // nice
-        window.addEventListener('keydown', function(event){
+      <script> // NOT nice
+        /*window.addEventListener('keydown', function(event){
           if(event.keyCode == 13){
             event.preventDefault();
             return false;
           } 
-        })
+        })*/
       </script>
 {% endblock %}
