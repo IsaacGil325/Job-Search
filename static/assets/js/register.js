@@ -15,6 +15,9 @@ function createToast(event){
         button["data-bs-dismiss"] = "toast"
         fieldentry.value = ""
     }
+    else{
+      
+    }
 } 
 
 /*<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
