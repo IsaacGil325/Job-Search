@@ -19,6 +19,23 @@ from models import db, User, SavedJob
 
 DATABASE ='./jobify.db'
 
+#INTERESTS = (
+        #('software engineer', 'Software engineer'),
+        #('biology', 'Biology'),
+        #('information technology', 'Information technology'),
+        #('product manager', "Product manager"),
+        #('project manager', 'Project manager'),
+        #('mechanical engineer', 'Mechanical engineer'),
+        #('architecture', 'Architecture'),
+        #('art', 'Art'),
+        #('biomedical engineer', 'Biomedical engineer'),
+        #('graphic designer', 'Graphic designer'),
+        #('fashion designer', 'Fashion designer'),
+        #('physicist', 'Physicist'),
+        #('dental assistant', 'Dental assistant'),
+        #('nurse', 'Nurse'),
+        #('lawyer', 'Lawyer')
+        #)
 
 Session(app)
 
@@ -246,6 +263,10 @@ def resume_builder():
 def homepage():
     return render_template('home.html')
 
+@app.route("/profile-settings")
+def profile_settings():
+    return render_template("profile-settings.html")
+    
 @app.route("/job_search", methods=('GET', 'POST'))
 @login_required
 def job_search():
@@ -289,6 +310,7 @@ def register_form():
         try:
             hashed_pw = bcrypt.generate_password_hash(form.password.data)
             user = User(username=form.username.data, password=hashed_pw)
+            #interests = forms.MultipleChoiceField(required=True, widget=forms.CheckboxSelectMultiple, choices=INTERESTS) 
             db.session.add(user)
             db.session.commit()
             session['username'] = user.username

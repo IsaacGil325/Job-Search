@@ -1,10 +1,14 @@
 {% extends 'layout.html' %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='job-search.css') }}
+{% endblock %}
 
 {% block content %}
+<h2 class="text-center mt-5 heading">Create an account to get started on your dream search</h2>
     <div class="content-section">
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
+      <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
      <div class="form-group">
      {{ form.username.label(class="form-control-label") }}
      {% if form.username.errors %}
@@ -43,6 +47,10 @@
        {% else %}
            {{ form.confirm_password(class="form-control form-control-lg") }}
        {% endif %}
+     </div>
+     <div class="form-group"> <!-- form-group -->
+        <label for="fields-entry" class="labels">Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control" name="fields of interest"></div>
+        <fieldset class="toast-container"></fieldset>
      </div>
  </fieldset>
  <div class="form-group">
