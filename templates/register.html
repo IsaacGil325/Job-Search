@@ -19,7 +19,7 @@
          {% endfor %}
        </div>
    {% else %}
-       {{ form.username(class="form-control form-control-lg") }}
+       {{ form.username(class="form-control form-control-lg register-form-input") }}
    {% endif %}
     </div>
     <div class="form-group">
@@ -32,7 +32,7 @@
              {% endfor %}
            </div>
        {% else %}
-           {{ form.password(class="form-control form-control-lg") }}
+           {{ form.password(class="form-control form-control-lg register-form-input") }}
        {% endif %}
      </div>
      <div class="form-group">
@@ -45,17 +45,19 @@
              {% endfor %}
            </div>
        {% else %}
-           {{ form.confirm_password(class="form-control form-control-lg") }}
+           {{ form.confirm_password(class="form-control form-control-lg register-form-input") }}
        {% endif %}
      </div>
      <div class="form-group"> <!-- form-group -->
-        <label for="fields-entry" class="labels">(Optional) Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control" name="fields of interest"></div>
+        <label for="fields-entry" class="labels">(Optional) Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control form-control-lg register-form-input" name="fields of interest"></div>
         <fieldset class="toast-container"></fieldset>
      </div>
+     <br>
+     <div class="form-group">
+             {{ form.submit(class="btn btn-outline-info register-form-input", style="display:block; margin: 0 auto") }}
+      </div>
  </fieldset>
- <div class="form-group">
-             {{ form.submit(class="btn btn-outline-info") }}
-          </div>
+ 
          </form>
      </div>
 {% endblock %}
