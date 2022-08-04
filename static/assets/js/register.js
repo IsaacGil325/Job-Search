@@ -1,5 +1,5 @@
 function createToast(event){
-    if(event.key == 'Enter'){
+    if(event.key == "Enter"){
         let toastcontainer = document.querySelector(".toast-container")
         let fieldentry = document.getElementById("fields-entry")
         let toast = document.createElement("div")
@@ -14,11 +14,18 @@ function createToast(event){
         button.className = "btn-close me-2 m-auto"
         button["data-bs-dismiss"] = "toast"
         fieldentry.value = ""
-    }
-    else{
-      
+        //linking the elements together to show where the toast is gonna go
+        flex.appendChild(toastbody)
+        flex.appendChild(button)
+        toast.appendChild(flex)
+        toastcontainer.appendChild(toast)
     }
 } 
+function preventSubmit(event){
+  if(event.key === "Enter"){
+    event.preventDefault()
+  }   
+}
 
 /*<div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
   <div class="d-flex">
