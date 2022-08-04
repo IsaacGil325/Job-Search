@@ -15,9 +15,14 @@
         label input{
             margin-top: 0.5rem;
         }
+        main{
+            width: 60%;
+            margin: 0 auto;
+        }
     </style>
-    <div>
-        <h2>Build a Resume</h2>
+    
+    <h2>Build a Resume</h2>
+    <main role="main">
         <h3>Note: Fields with (*) are required.</h3>
         <!-- <embed type="text/html" src="{{ url_for('static', filename='templates/resume-look.html') }}" width="500" height="200"> -->
         <form action="{{ url_for('resume_builder') }}" target="_blank" method="POST">
@@ -222,7 +227,7 @@
                 </div>
         </form>
 
-    </div>
+    </main>
 
 
 {% endblock %}
