@@ -116,6 +116,20 @@
                             {{ form.university(class="form-control form-control-lg") }}
                         {% endif %}
                     </div>
+                    <!-- Univeristy Location -->
+                    <div class="form-group">
+                        {{ form.university_location.label(class="form-control-label") }}
+                        {% if form.university_location.errors %}
+                            {{ form.university_location(class="form-control form-control-lg is-invalid") }}
+                            <div class="invalid-feedback">
+                                {% for error in form.university_location.errors %}
+                                    <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            {{ form.university_location(class="form-control form-control-lg") }}
+                        {% endif %}
+                    </div>
                     <!-- Major -->
                     <div class="form-group">
                         <label>Degree Type*

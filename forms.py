@@ -23,6 +23,7 @@ class ResumeForm(FlaskForm):
     phone_number = StringField('Phone*', validators=[DataRequired(), Length(12)])
     #education section with major and gpa 
     university = StringField('University*', validators=[DataRequired()])
+    university_location = StringField('University Location*', validators=[DataRequired()])
     major = StringField('Major(s)*', validators=[DataRequired()])
     submit = SubmitField('Build Resume')
     # gpa = StringField('GPA')

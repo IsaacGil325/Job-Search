@@ -92,11 +92,11 @@
 		<h2>EDUCATION</h2>
 		<div class='row'>
 			<h3 class='col'>{{ data['university'].upper() }}</h3>
-			<p class='col loc'>City, State</p>
+			<p class='col loc'>{{ data['university_location'] }}</p>
 		</div>
 		<div class='row'>
-			<h4 class='col' id='degree-type'>{{ data['degree_type' ]}} in {{ data['major'].title() }}</h4>
-			<p class='col mo-yr'>{{ data['graduation_year' ]}}</p>
+			<h4 class='col' id='degree-type'>{{ data['degree_type'].title() }} in {{ data['major'].title() }}</h4>
+			<p class='col mo-yr'>{{ data['graduation_year'] }}</p>
 		</div>
 		{% if data['gpa'] %}
 			<div class='row'>
