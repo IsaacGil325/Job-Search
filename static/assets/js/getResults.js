@@ -1,5 +1,5 @@
 function getResults(job_id) {
-  ?console.log('from getResults:')
+  console.log('from getResults:')
   
   var title = document.getElementById("job_title_"+job_id).innerText;
   var c_name = document.getElementById("company_name_"+job_id).innerText;
