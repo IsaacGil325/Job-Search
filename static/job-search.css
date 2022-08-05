@@ -14,7 +14,7 @@ h2{
   font-size: 60px;
 }
 
-.login-form input{
+.login-form input, .register-form-input{
   border-radius: 20px;
 }
 

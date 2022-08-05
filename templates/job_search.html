@@ -15,8 +15,8 @@
                             <div class="col-xl-6 col-lg-9 col-md-10">
                                 <form action="{{ url_for('job_search') }}" class="search-box" method="POST">
                                     <div class="input-form" style="width: 100%">
-                                        <input class="form-control" style="border-radius: 20px" type ="text" name ="fields" placeholder="Type job field(s) seperated by ','"><br>
-                                        <input class="form-control" style="border-radius: 20px" type ="text" name ="location" placeholder="Type a location"><br>
+                                        <input class="form-control" style="border-radius: 20px" type ="text" required name ="fields" placeholder="Type job field(s) seperated by ','"><br>
+                                        <input class="form-control" style="border-radius: 20px" type ="text" name ="location" placeholder="(Optional) Type a location"><br>
                                         <input class="btn btn-outline-info" style="width: 150px; border-radius: 20px" type="submit" value="Find jobs"><br>
                                        
                                     </div>	

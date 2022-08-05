@@ -8,17 +8,10 @@
     h3{
         font-size: 24px;
     }
-    #fields-of-interest-container{
-        display : flex;
+    .container .row input{
+        border-radius: 20px;
     }
-    #fields-of-interest-container input{
-        flex-grow : 3;
-        width : 50%;
-    }
-    #fields-of-interest-container button{
-        border-radius : 70px;
-        flex-grow : 1;
-    }
+
 </style>
 {% endblock %}
 {% block content %}
@@ -41,7 +34,7 @@
                 <div class="col-md-12"><label for="phone-number" class="labels">Mobile Number</label><input id="phone-number" type="text" class="form-control" placeholder="Enter phone number" value=""></div>
                 <div class="col-md-12"><label for="email" class="labels">Email</label><input id="email" type="text" class="form-control" placeholder="Enter email" value=""></div>
                 <div class="col-md-12"><!-- form-group -->
-                    <label for="fields-entry" class="labels">Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control" name="fields of interest"><button class="btn btn-sm btn-secondary">Save Field</button></div>
+                    <label for="fields-entry" class="labels">Fields of Interest</label><input id="fields-entry" class="form-control" name="fields of interest" placeholder='One at a time; press "Enter" to save field'>
                 </div>
             </div>
         
