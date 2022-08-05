@@ -1,6 +1,22 @@
 {% extends "layout.html" %}
 {% block content %}
+<script src="https://kit.fontawesome.com/39c5ff227a.js" crossorigin="anonymous"></script>
+<style>
+  .icon-button {
+  background-color: DodgerBlue; /* Blue background */
+  border: none; /* Remove borders */
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 30px; /* Set a font size */
+  cursor: pointer; /* Mouse pointer on hover */
+  border-radius:20%;
+}
 
+/* Darker background on mouse-over */
+.icon-button:hover {
+  background-color: RoyalBlue;
+}
+</style>
 <table class="table table-bordered">
   <thead>
     <tr>
@@ -20,7 +36,7 @@
       <td id="company_name_{{job['job_id']}}">{{job['company_name']}}</td>
       <td id="job_location_{{job['job_id']}}">{{job['location']}}</td>
       <td><span id="job_description_{{job['job_id']}}">{{job['description']|safe}}</span><span onclick="viewFullDescription({{ job['description'] }})">(view full description)</span></td>
-      <td><button type="submit" id="job_save_{{job['job_id']}}" value="job" onclick = "getResults('{{ job['job_id'] }}');" >Save Job</button></td>
+      <td><button class="icon-button" type="submit" id="job_save_{{job['job_id']}}" value="job" onclick = "getResults('{{ job['job_id'] }}');"><i class="fas fa-save"></i></button></td>
     </tr>
     {%else%}
     <h5> No jobs to display</h5>

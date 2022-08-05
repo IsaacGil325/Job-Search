@@ -118,6 +118,11 @@
                     </div>
                     <!-- Major -->
                     <div class="form-group">
+                        <label>Degree Type*
+                            <input type="text" name="degree_type" required class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
                         {{ form.major.label(class="form-control-label") }}
                         {% if form.major.errors %}
                             {{ form.major(class="form-control form-control-lg is-invalid") }}
@@ -131,8 +136,13 @@
                         {% endif %}
                     </div>
                     <div class="form-group">
-                        <label>GPA:
-                            <input type="text" name="gpa" class="form-control">
+                        <label>GPA
+                            <input type="text" name="gpa" class="form-control form-control-lg">
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>Graduation Month-Year*
+                            <input type="text" name="graduation_year" required class="form-control form-control-lg">
                         </label>
                     </div>
                 </div>
@@ -145,6 +155,11 @@
                             <label>Company Name*
                                 <input type="text" name="company 1" required class="form-control form-control-lg">
                             </label>
+                        </div>
+                        <div class="form-group">
+                        <label>Location*
+                            <input type="text" name="location 1" required class="form-control form-control-lg">
+                        </label>
                         </div>
                         <div class="form-group">
                             <label>Position*
