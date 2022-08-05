@@ -6,12 +6,12 @@
         function validateForm() {
             var x = document.forms["login-form"]["username"].value;
             if (x==null || x=="") {
-                alert("Name must be filled out");
+                alert("Username must be filled out");
                 return false;
             }
             var y = document.forms["login-form"]["password"].value;
             if (y==null || y=="") {
-                alert("Password name must be filled out");
+                alert("Password must be filled out");
                 return false;
             }
         }
@@ -29,19 +29,19 @@
 
     <div class="content-section form-group">
             <form name="login-form" class="login-form" action="/login" onsubmit="return validateForm()" target="_self" method="POST"  >
-                <h2 class="text-center mt-5 heading"><strong style="font-weight: 200; font-size: 72px;">Login to your account</strong></h2>
+                <h2 class="text-center mt-5 heading"><strong style="font-weight: 200; font-size: 60px;">Login to your account</strong></h2>
                 <div class="invalid-feedback">
                     {% if error %}
                     <script>
-                        alert("Username or Password is incorrect")
+                        alert("Username and/or password is incorrect")
                     </script>
                     {% endif %}
                 </div>
                 <div class="form-inputs-container">
-                    <input class="form-control form-control-lg is-invalid" type ="text" name ="username" placeholder="Username"><br>
-                    <input class="form-control form-control-lg is-invalid" type="password" name="password" placeholder="Password"><br>
+                    <input class="form-control form-control-lg" required type ="text" name ="username" placeholder="Username"><br>
+                    <input class="form-control form-control-lg" required type="password" name="password" placeholder="Password"><br>
                     <input class="btn btn-outline-info" style="width: 150px; display: block" type="submit" value="Submit"><br>
-                </div>
+                </div>      
             </form>
     </div>
 {% endblock content %}

@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block content %}
-<h2 class="text-center mt-5 heading">Create an account to get started on your dream search</h2>
+<h2 class="text-center mt-5 heading"><strong style="font-weight: 200; font-size: 60px;">Create an account to get started on your dream search</strong></h2>
     <div class="content-section">
       <form method="POST" action="">
         {{ form.hidden_tag() }}
         <fieldset class="form-group">
      <div class="form-group">
-     {{ form.username.label(class="form-control-label") }}
+     <!-- {{ form.username.label(class="form-control-label") }} -->
      {% if form.username.errors %}
        {{ form.username(class="form-control form-control-lg is-invalid") }}
        <div class="invalid-feedback">
@@ -19,11 +19,12 @@
          {% endfor %}
        </div>
    {% else %}
-       {{ form.username(class="form-control form-control-lg register-form-input") }}
+       {{ form.username(class="form-control form-control-lg register-form-input", placeholder='Username') }}
    {% endif %}
+   <br>
     </div>
     <div class="form-group">
-         {{ form.password.label(class="form-control-label") }}
+         <!-- {{ form.password.label(class="form-control-label") }} -->
          {% if form.password.errors %}
            {{ form.password(class="form-control form-control-lg is-invalid") }}
            <div class="invalid-feedback">
@@ -32,11 +33,12 @@
              {% endfor %}
            </div>
        {% else %}
-           {{ form.password(class="form-control form-control-lg register-form-input") }}
+           {{ form.password(class="form-control form-control-lg register-form-input", placeholder='Password') }}
        {% endif %}
      </div>
+     <br>
      <div class="form-group">
-         {{ form.confirm_password.label(class="form-control-label") }}
+         <!-- {{ form.confirm_password.label(class="form-control-label") }} -->
          {% if form.confirm_password.errors %}
            {{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
            <div class="invalid-feedback">
@@ -45,11 +47,13 @@
              {% endfor %}
            </div>
        {% else %}
-           {{ form.confirm_password(class="form-control form-control-lg register-form-input") }}
+           {{ form.confirm_password(class="form-control form-control-lg register-form-input", placeholder='Confirm Password') }}
        {% endif %}
      </div>
+     <br>
      <div class="form-group"> <!-- form-group -->
-        <label for="fields-entry" class="labels">Fields of Interest</label><div id="fields-of-interest-container"><input id="fields-entry" class="form-control form-control-lg register-form-input" name="fields of interest"></div>
+        <!-- <label for="fields-entry" class="labels">(Optional) Fields of Interest</label> -->
+        <input id="fields-entry" class="form-control form-control-lg register-form-input" placeholder='(Optional) Fields of Interest: Type job field(s) seperated by comma' onkeypress="createToast(event)" name="fields of interest">
         <fieldset class="toast-container"></fieldset>
      </div>
      <br>
@@ -60,4 +64,12 @@
  
          </form>
      </div>
+      <script> // NOT nice
+        /*window.addEventListener('keydown', function(event){
+          if(event.keyCode == 13){
+            event.preventDefault();
+            return false;
+          } 
+        })*/
+      </script>
 {% endblock %}
