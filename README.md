@@ -1,6 +1,8 @@
 # job-search
 A project that grabs from a Google-search-based API to combine many query results to allow for more interdisciplinary job searches. We also have a resume-building feature, where users can input their information and we output to you a formatted resume you can print or save to a PDF.
 
+This project is an extension of the [job-search project](https://github.com/joshfeli/job-search), which only features the backend.
+
 Created while participating in [SEO's Tech Developer program](https://www.seo-usa.org/career/tech/).
 
 ## Program Flow
